@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 class TenantController extends Controller
-{
+{ 
     /**
      * 租客仪表板
      */

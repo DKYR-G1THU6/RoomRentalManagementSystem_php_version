@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Booking;
 
 class AdminController extends Controller
-{
+{ 
     /**
      * 管理员仪表板
      */

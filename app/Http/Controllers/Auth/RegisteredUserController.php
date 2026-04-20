@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
-{
+{ 
     /**
      * Display the registration view.
      */
@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'tenant',
+            'email_verified_at' => now(), //add this for after register user will be marked verified
         ]);
 
         event(new Registered($user));
