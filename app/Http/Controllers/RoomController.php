@@ -12,10 +12,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        // 获取数据库中所有的房间记录 - 确保每次都获取最新数据
-        $rooms = Room::latest()->get(); 
-        
-        // 将数据传递给前端视图 (先写好路径，视图我们待会儿建)
+        $this->authorize('viewAny', Room::class);
+
+        $rooms = Room::latest()->get();
+
         return view('rooms.index', compact('rooms'));
     }
 
@@ -24,6 +24,8 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Room::class);
+
         return view('rooms.create');
     }
 
@@ -31,21 +33,20 @@ class RoomController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-   {
-        
+    {
+        $this->authorize('create', Room::class);
+
         $validatedData = $request->validate([
-            'room_number' => 'required|string|max:255|unique:rooms,room_number', // 必填项，且房间号不能重复
+            'room_number' => 'required|string|max:255|unique:rooms,room_number',
             'type' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0', // 必须是数字且不能是负数
-            'status' => 'required|in:available,rented,maintenance', // 只能是这三种状态之一
-            'description' => 'nullable|string', // 选填项
+            'price' => 'required|numeric|min:0',
+            'status' => 'required|in:available,rented,maintenance',
+            'description' => 'nullable|string',
         ]);
 
-        
         Room::create($validatedData);
 
-        
-        return redirect()->route('admin.rooms.index')->with('success', 'Add Room Successfully！');
+        return redirect()->route('admin.rooms.index')->with('success', 'Add Room Successfully!');
     }
 
     /**
@@ -54,6 +55,8 @@ class RoomController extends Controller
     public function show(string $id)
     {
         $room = Room::findOrFail($id);
+        $this->authorize('view', $room);
+
         return view('rooms.show', compact('room'));
     }
 
@@ -63,6 +66,8 @@ class RoomController extends Controller
     public function edit(string $id)
     {
         $room = Room::findOrFail($id);
+        $this->authorize('update', $room);
+
         return view('rooms.edit', compact('room'));
     }
 
@@ -70,9 +75,10 @@ class RoomController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {        $room = Room::findOrFail($id);
-                // 1. 数据验证
-        // 注意：这里的 unique 规则加了拼接，意思是“房间号必须唯一，但允许和自己现在的房间号一样”
+    {
+        $room = Room::findOrFail($id);
+        $this->authorize('update', $room);
+
         $validatedData = $request->validate([
             'room_number' => 'required|string|max:255|unique:rooms,room_number,' . $room->id,
             'type' => 'required|string|max:255',
@@ -81,11 +87,9 @@ class RoomController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        // 2. 更新数据库
         $room->update($validatedData);
 
-        // 3. 返回列表页并带上成功提示
-        return redirect()->route('admin.rooms.index')->with('success', '房间信息更新成功！');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room updated successfully!');
     }
 
     /**
@@ -94,11 +98,10 @@ class RoomController extends Controller
     public function destroy(string $id)
     {
         $room = Room::findOrFail($id);
-        
-        // 1. 执行删除操作
+        $this->authorize('delete', $room);
+
         $room->delete();
 
-        // 2. 返回列表页
-        return redirect()->route('admin.rooms.index')->with('success', '房间已成功删除！');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully!');
     }
 }

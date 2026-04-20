@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // 租客路由
-Route::middleware(['auth', 'verified'])->prefix('tenant')->name('tenant.')->group(function () {
+Route::middleware(['auth', 'verified', 'can:access-tenant'])->prefix('tenant')->name('tenant.')->group(function () {
     // 任何访问仪表板的租客都被重定向到房间列表
     Route::redirect('/dashboard', '/tenant/rooms');
     
@@ -54,7 +54,7 @@ Route::middleware(['auth', 'verified'])->prefix('tenant')->name('tenant.')->grou
 });
 
 // 管理员路由
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'verified', 'can:access-admin'])->prefix('admin')->name('admin.')->group(function () {
     // 管理员仪表板
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
