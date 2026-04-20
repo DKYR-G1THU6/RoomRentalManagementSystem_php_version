@@ -28,8 +28,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        // 根据用户角色转向相应页面
+        // Check user role and redirect to the admin page or tenant page
         if (auth()->user()->role === 'admin') {
             return redirect()->route('admin.rooms.index');
         } else {

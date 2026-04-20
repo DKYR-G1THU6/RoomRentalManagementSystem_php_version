@@ -43,12 +43,9 @@ class RegisteredUserController extends Controller
             'role' => 'tenant',
             'email_verified_at' => now(), //add this for after register user will be marked verified
         ]);
-
         event(new Registered($user));
-
         Auth::login($user);
-
-        // 新注册的用户直接转向租客房间浏览页面
+        // redirect to tenant room list page
         return redirect()->route('tenant.rooms');
     }
 }

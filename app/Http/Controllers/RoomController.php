@@ -12,10 +12,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        // 获取数据库中所有的房间记录 - 确保每次都获取最新数据
+        // 1. Get the latest room records from the database - ensure that the latest data is obtained every time
         $rooms = Room::latest()->get(); 
         
-        // 将数据传递给前端视图 (先写好路径，视图我们待会儿建)
+        // 2. Pass the data to the frontend view (write the path first, and we will create the view later)
         return view('rooms.index', compact('rooms'));
     }
 
@@ -34,18 +34,18 @@ class RoomController extends Controller
    {
         
         $validatedData = $request->validate([
-            'room_number' => 'required|string|max:255|unique:rooms,room_number', // 必填项，且房间号不能重复
+            'room_number' => 'required|string|max:255|unique:rooms,room_number', // required, unique room number
             'type' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0', // 必须是数字且不能是负数
-            'status' => 'required|in:available,rented,maintenance', // 只能是这三种状态之一
-            'description' => 'nullable|string', // 选填项
+            'price' => 'required|numeric|min:0', // must be a number and cannot be negative
+            'status' => 'required|in:available,rented,maintenance', // only these three states are allowed
+            'description' => 'nullable|string', // optional
         ]);
 
         
         Room::create($validatedData);
 
         
-        return redirect()->route('admin.rooms.index')->with('success', 'Add Room Successfully！');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room added successfully!');
     }
 
     /**
@@ -71,8 +71,9 @@ class RoomController extends Controller
      */
     public function update(Request $request, string $id)
     {        $room = Room::findOrFail($id);
-                // 1. 数据验证
-        // 注意：这里的 unique 规则加了拼接，意思是“房间号必须唯一，但允许和自己现在的房间号一样”
+                // 1. validate the input data
+        // Note: the unique rule is appended with the current room id, meaning that the room number must be unique 
+        // but it is allowed to be the same as the current room number
         $validatedData = $request->validate([
             'room_number' => 'required|string|max:255|unique:rooms,room_number,' . $room->id,
             'type' => 'required|string|max:255',
@@ -81,11 +82,11 @@ class RoomController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        // 2. 更新数据库
+        // 2. update database
         $room->update($validatedData);
 
-        // 3. 返回列表页并带上成功提示
-        return redirect()->route('admin.rooms.index')->with('success', '房间信息更新成功！');
+        // 3. return to the list page with a success message
+        return redirect()->route('admin.rooms.index')->with('success', 'Room information updated successfully!');
     }
 
     /**
@@ -95,10 +96,10 @@ class RoomController extends Controller
     {
         $room = Room::findOrFail($id);
         
-        // 1. 执行删除操作
+        // 1. delete the room
         $room->delete();
 
-        // 2. 返回列表页
-        return redirect()->route('admin.rooms.index')->with('success', '房间已成功删除！');
+        // 2. return to the list page
+        return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully!');
     }
 }
