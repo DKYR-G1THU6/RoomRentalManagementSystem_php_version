@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_TENANT = 'tenant';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -51,5 +54,15 @@ class User extends Authenticatable
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isTenant(): bool
+    {
+        return $this->role === self::ROLE_TENANT;
     }
 }

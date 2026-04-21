@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Booking;
+use App\Models\Room;
+use App\Models\User;
+use App\Policies\BookingPolicy;
+use App\Policies\RoomPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Booking::class => BookingPolicy::class,
+        Room::class => RoomPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -21,6 +29,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('access-admin', fn (User $user) => $user->isAdmin());
+        Gate::define('access-tenant', fn (User $user) => $user->isTenant());
     }
 }

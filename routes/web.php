@@ -38,9 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// tenant routes
-Route::middleware(['auth', 'verified'])->prefix('tenant')->name('tenant.')->group(function () {
-    // any tenant who visits the dashboard will be redirected to the room list
+// 租客路由
+Route::middleware(['auth', 'verified', 'can:access-tenant'])->prefix('tenant')->name('tenant.')->group(function () {
+    // 任何访问仪表板的租客都被重定向到房间列表
     Route::redirect('/dashboard', '/tenant/rooms');
     
     // room browsing
@@ -53,9 +53,9 @@ Route::middleware(['auth', 'verified'])->prefix('tenant')->name('tenant.')->grou
     Route::delete('/bookings/{booking}/cancel', [BookingController::class, 'cancelBooking'])->name('bookings.cancel');
 });
 
-// admin routes
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    // admin dashboard
+// 管理员路由
+Route::middleware(['auth', 'verified', 'can:access-admin'])->prefix('admin')->name('admin.')->group(function () {
+    // 管理员仪表板
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
     // room management

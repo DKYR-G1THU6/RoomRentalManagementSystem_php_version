@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\DB;
 class BookingController extends Controller
 { 
     /**
-     * tenant view available rooms
+     * Tenant views available rooms.
      */
     public function availableRooms()
     {
-        // Exclude rooms that are still occupied (including completed orders with future end dates)
+        $this->authorize('viewAvailable', Room::class);
+
         $occupiedRoomIds = Booking::query()
             ->whereIn('status', ['active', 'completed'])
             ->whereDate('end_date', '>=', now()->toDateString())
@@ -26,17 +27,17 @@ class BookingController extends Controller
             ->whereNotIn('id', $occupiedRoomIds)
             ->orderBy('id')
             ->get();
+
         return view('tenant.rooms.available', compact('rooms'));
     }
 
     /**
-     * tenant view room details and booking page
+     * Tenant views a room booking page.
      */
     public function bookRoom(Room $room)
     {
-        if ($room->status !== 'available') {
-            return redirect()->route('tenant.rooms')->with('error', 'This room is not available');
-        }
+        $this->authorize('book', $room);
+
         return view('tenant.rooms.book', compact('room'));
     }
 
@@ -47,24 +48,24 @@ class BookingController extends Controller
     {
         if ($room->status !== 'available') {
             return redirect()->route('tenant.rooms')->with('error', 'This room is not available');
-        }
+
+        $this->authorize('create', Booking::class);
+        $this->authorize('book', $room);
 
         $validated = $request->validate([
             'start_date' => 'required|date|after_or_equal:today',
             'end_date' => 'required|date|after:start_date',
         ], [
-            'start_date.after_or_equal' => 'Check-in date cannot be earlier than today',
-            'end_date.after' => 'Check-out date must be after check-in date',
+            'start_date.after_or_equal' => 'Check-in date cannot be earlier than today.',
+            'end_date.after' => 'Check-out date must be later than the check-in date.',
         ]);
 
-        // Calculate the number of days and the total price
         $startDate = new \DateTime($validated['start_date']);
         $endDate = new \DateTime($validated['end_date']);
         $days = $endDate->diff($startDate)->days;
         $totalPrice = $days * $room->price;
 
-        // Create a booking
-        $booking = Booking::create([
+        Booking::create([
             'user_id' => Auth::id(),
             'room_id' => $room->id,
             'start_date' => $validated['start_date'],
@@ -75,16 +76,19 @@ class BookingController extends Controller
 
         return redirect()->route('tenant.bookings.my')->with(
             'success',
-            'Booking submitted, waiting for admin approval'
+            'Booking submitted successfully and is waiting for admin approval.'
         );
     }
 
     /**
-     * tenant view their own bookings
+     * Tenant views their own bookings.
      */
     public function myBookings()
     {
+        $this->authorize('viewAny', Booking::class);
+
         $bookings = Auth::user()->bookings()->with('room')->latest()->get();
+
         return view('tenant.bookings.my', compact('bookings'));
     }
 
@@ -103,34 +107,38 @@ class BookingController extends Controller
             return redirect()->route('tenant.bookings.my')->with('error', 'Only pending bookings can be cancelled');
         }
 
+        $this->authorize('cancel', $booking);
+
         $booking->update(['status' => 'cancelled']);
 
-        return redirect()->route('tenant.bookings.my')->with('success', 'Booking cancelled successfully');
+        return redirect()->route('tenant.bookings.my')->with('success', 'Booking cancelled successfully.');
     }
 
     /**
-     * admin view all bookings
+     * Admin views all bookings.
      */
     public function allBookings()
     {
+        $this->authorize('viewAdminList', Booking::class);
+
         $bookings = Booking::with('user', 'room')
             ->orderBy('status')
             ->latest()
             ->get();
+
         return view('admin.bookings.index', compact('bookings'));
     }
 
     /**
-     * admin approve booking
+     * Admin approves a pending booking.
      */
     public function approveBooking(Booking $booking)
     {
-        // 
+        $this->authorize('approve', $booking);
+
         DB::transaction(function () use ($booking) {
-            // update booking status
             $booking->update(['status' => 'active']);
-            
-            // update room status
+
             DB::table('rooms')
                 ->where('id', $booking->room_id)
                 ->update(['status' => 'rented', 'updated_at' => now()]);
@@ -138,39 +146,39 @@ class BookingController extends Controller
 
         return redirect()->route('admin.bookings.index')->with(
             'success',
-            'Booking approved successfully, room status updated to rented'
+            'Booking approved and room status updated to rented.'
         );
     }
 
     /**
-     * admin reject booking
+     * Admin rejects a pending booking.
      */
     public function rejectBooking(Booking $booking)
     {
+        $this->authorize('reject', $booking);
+
         $booking->update(['status' => 'cancelled']);
 
-        return redirect()->route('admin.bookings.index')->with('success', 'Booking rejected successfully');
+        return redirect()->route('admin.bookings.index')->with('success', 'Booking rejected successfully.');
     }
 
     /**
-     * admin complete booking
+     * Admin completes an active booking.
      */
     public function completeBooking(Booking $booking)
     {
-        // Prevent early completion: cannot complete the order if the check-out date has not arrived
+        $this->authorize('complete', $booking);
+
         if ($booking->end_date->isFuture()) {
             return redirect()->route('admin.bookings.index')->with(
                 'error',
-                'The check-out date has not arrived, so the order cannot be completed yet'
+                'The booking cannot be completed before the check-out date.'
             );
         }
 
-        // Use transaction to ensure that both updates are successfully committed
         DB::transaction(function () use ($booking) {
-            // update booking status
             $booking->update(['status' => 'completed']);
-            
-            // update room status
+
             DB::table('rooms')
                 ->where('id', $booking->room_id)
                 ->update(['status' => 'available', 'updated_at' => now()]);
@@ -178,7 +186,7 @@ class BookingController extends Controller
 
         return redirect()->route('admin.bookings.index')->with(
             'success',
-            'Booking completed successfully, room status updated to available'
+            'Booking completed and room status updated to available.'
         );
     }
 }

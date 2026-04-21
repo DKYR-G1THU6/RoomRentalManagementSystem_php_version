@@ -12,10 +12,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        // 1. Get the latest room records from the database - ensure that the latest data is obtained every time
-        $rooms = Room::latest()->get(); 
-        
-        // 2. Pass the data to the frontend view (write the path first, and we will create the view later)
+        $this->authorize('viewAny', Room::class);
+
+        $rooms = Room::latest()->get();
+
         return view('rooms.index', compact('rooms'));
     }
 
@@ -24,6 +24,8 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Room::class);
+
         return view('rooms.create');
     }
 
@@ -31,21 +33,20 @@ class RoomController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-   {
-        
+    {
+        $this->authorize('create', Room::class);
+
         $validatedData = $request->validate([
-            'room_number' => 'required|string|max:255|unique:rooms,room_number', // required, unique room number
+            'room_number' => 'required|string|max:255|unique:rooms,room_number',
             'type' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0', // must be a number and cannot be negative
-            'status' => 'required|in:available,rented,maintenance', // only these three states are allowed
-            'description' => 'nullable|string', // optional
+            'price' => 'required|numeric|min:0',
+            'status' => 'required|in:available,rented,maintenance',
+            'description' => 'nullable|string',
         ]);
 
-        
         Room::create($validatedData);
 
-        
-        return redirect()->route('admin.rooms.index')->with('success', 'Room added successfully!');
+        return redirect()->route('admin.rooms.index')->with('success', 'Add Room Successfully!');
     }
 
     /**
@@ -54,6 +55,8 @@ class RoomController extends Controller
     public function show(string $id)
     {
         $room = Room::findOrFail($id);
+        $this->authorize('view', $room);
+
         return view('rooms.show', compact('room'));
     }
 
@@ -63,6 +66,8 @@ class RoomController extends Controller
     public function edit(string $id)
     {
         $room = Room::findOrFail($id);
+        $this->authorize('update', $room);
+
         return view('rooms.edit', compact('room'));
     }
 
@@ -70,10 +75,10 @@ class RoomController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {        $room = Room::findOrFail($id);
-                // 1. validate the input data
-        // Note: the unique rule is appended with the current room id, meaning that the room number must be unique 
-        // but it is allowed to be the same as the current room number
+    {
+        $room = Room::findOrFail($id);
+        $this->authorize('update', $room);
+
         $validatedData = $request->validate([
             'room_number' => 'required|string|max:255|unique:rooms,room_number,' . $room->id,
             'type' => 'required|string|max:255',
@@ -82,11 +87,9 @@ class RoomController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        // 2. update database
         $room->update($validatedData);
 
-        // 3. return to the list page with a success message
-        return redirect()->route('admin.rooms.index')->with('success', 'Room information updated successfully!');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room updated successfully!');
     }
 
     /**
@@ -95,11 +98,10 @@ class RoomController extends Controller
     public function destroy(string $id)
     {
         $room = Room::findOrFail($id);
-        
-        // 1. delete the room
+        $this->authorize('delete', $room);
+
         $room->delete();
 
-        // 2. return to the list page
         return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully!');
     }
 }
