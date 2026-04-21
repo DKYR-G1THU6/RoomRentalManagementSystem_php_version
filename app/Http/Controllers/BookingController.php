@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
-{
+{ 
     /**
      * Tenant views available rooms.
      */
@@ -42,10 +42,13 @@ class BookingController extends Controller
     }
 
     /**
-     * Tenant submits a booking.
+     * tenant submit booking
      */
     public function storeBooking(Request $request, Room $room)
     {
+        if ($room->status !== 'available') {
+            return redirect()->route('tenant.rooms')->with('error', 'This room is not available');
+
         $this->authorize('create', Booking::class);
         $this->authorize('book', $room);
 
@@ -90,10 +93,20 @@ class BookingController extends Controller
     }
 
     /**
-     * Tenant cancels a pending booking that belongs to them.
+     * tenant cancel booking
      */
     public function cancelBooking(Booking $booking)
     {
+        // Check if the booking belongs to the current user
+        if ($booking->user_id !== Auth::id()) {
+            return redirect()->route('tenant.bookings.my')->with('error', 'No permission to perform this operation');
+        }
+
+        // Only pending bookings can be cancelled
+        if ($booking->status !== 'pending') {
+            return redirect()->route('tenant.bookings.my')->with('error', 'Only pending bookings can be cancelled');
+        }
+
         $this->authorize('cancel', $booking);
 
         $booking->update(['status' => 'cancelled']);

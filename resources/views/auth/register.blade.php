@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>注册 - 房间租赁管理系统</title>
+    <title>Register - Room Rental Management System</title>
     <style>
         * {
             margin: 0;
@@ -212,11 +212,11 @@
     <!-- 导航栏 -->
     <div class="navbar">
         <a href="{{ url('/') }}" class="navbar-brand">
-            🏨 房间租赁管理系统
+            🏨 Room Rental Management System
         </a>
         <div class="navbar-actions">
-            <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">返回首页</a>
-            <a href="{{ route('login') }}" class="nav-btn nav-btn-primary">登录</a>
+            <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">Back to Home</a>
+            <a href="{{ route('login') }}" class="nav-btn nav-btn-primary">Login</a>
         </div>
     </div>
 
@@ -224,8 +224,8 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2>✍️ 注册</h2>
-                <p>创建您的账户</p>
+                <h2>✍️ Register</h2>
+                <p>Create your account</p>
             </div>
 
             @if ($errors->any())
@@ -240,7 +240,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="name">用户名</label>
+                    <label for="name">Username</label>
                     <input 
                         type="text" 
                         id="name" 
@@ -248,7 +248,7 @@
                         value="{{ old('name') }}"
                         required 
                         autofocus
-                        placeholder="输入您的用户名"
+                        placeholder="Enter your username"
                     >
                     @error('name')
                         <div class="error">{{ $message }}</div>
@@ -256,14 +256,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">邮箱地址</label>
+                    <label for="email">Email Address</label>
                     <input 
                         type="email" 
                         id="email" 
                         name="email" 
                         value="{{ old('email') }}"
                         required
-                        placeholder="输入您的邮箱"
+                        placeholder="Enter your email address"
                     >
                     @error('email')
                         <div class="error">{{ $message }}</div>
@@ -271,13 +271,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">密码</label>
+                    <label for="password">Password</label>
                     <input 
                         type="password" 
                         id="password" 
                         name="password" 
                         required
-                        placeholder="设置一个安全的密码"
+                        placeholder="Enter a secure password"
                     >
                     @error('password')
                         <div class="error">{{ $message }}</div>
@@ -285,13 +285,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password_confirmation">确认密码</label>
+                    <label for="password_confirmation">Confirm Password</label>
                     <input 
                         type="password" 
                         id="password_confirmation" 
                         name="password_confirmation" 
                         required
-                        placeholder="再次输入您的密码"
+                        placeholder="Confirm your password"
                     >
                     @error('password_confirmation')
                         <div class="error">{{ $message }}</div>
@@ -299,13 +299,13 @@
                 </div>
 
                 <p class="info-text">
-                    注册后，您将成为系统的租客。如需管理员权限，请联系系统管理员。
+                    After registration, you will become a tenant of the system. If you need administrator privileges, please contact the system administrator.
                 </p>
 
-                <button type="submit" class="btn btn-primary">创建账户</button>
+                <button type="submit" class="btn btn-primary">Create Account</button>
 
                 <div class="footer-actions">
-                    已有账户？<a href="{{ route('login') }}">立即登录</a>
+                        Don't have an account? <a href="{{ route('login') }}">Register now</a>
                 </div>
             </form>
         </div>

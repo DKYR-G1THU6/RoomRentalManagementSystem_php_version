@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
-{
+{ 
     /**
      * Display the registration view.
      */
@@ -41,13 +41,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'tenant',
+            'email_verified_at' => now(), //add this for after register user will be marked verified
         ]);
-
         event(new Registered($user));
-
         Auth::login($user);
-
-        // 新注册的用户直接转向租客房间浏览页面
+        // redirect to tenant room list page
         return redirect()->route('tenant.rooms');
     }
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>房间租赁管理系统</title>
+    <title>Room Rental Management System</title>
     <style>
         * {
             margin: 0;
@@ -327,20 +327,20 @@
     <!-- 导航栏 -->
     <div class="navbar">
         <div class="navbar-brand">
-            🏨 房间租赁管理系统
+            🏨 Room Rental Management System
         </div>
         @auth
             <div class="navbar-actions">
                 <span style="color: #2c3e50; font-weight: 600;">{{ auth()->user()->name }}</span>
                 <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
                     @csrf
-                    <button type="submit" class="nav-btn nav-btn-primary">🚪 登出</button>
+                    <button type="submit" class="nav-btn nav-btn-primary">🚪 Log Out</button>
                 </form>
             </div>
         @else
             <div class="navbar-actions">
-                <a href="{{ route('login') }}" class="nav-btn nav-btn-secondary">登录</a>
-                <a href="{{ route('register') }}" class="nav-btn nav-btn-primary">注册</a>
+                <a href="{{ route('login') }}" class="nav-btn nav-btn-secondary">Login</a>
+                <a href="{{ route('register') }}" class="nav-btn nav-btn-primary">Register</a>
             </div>
         @endauth
     </div>
@@ -350,36 +350,36 @@
         <!-- 左侧 - 特性介绍（仅未登录用户） -->
         @guest
             <div class="hero-section">
-                <h1>轻松管理您的房间预订</h1>
-                <p>一站式房间租赁解决方案</p>
+                <h1>Easy to Manage Your Room Bookings</h1>
+                <p>One-stop room rental solution</p>
                 
                 <div class="feature-list">
                     <div class="feature-item">
                         <div class="feature-item-icon">🔍</div>
                         <div class="feature-item-text">
-                            <h4>浏览房间</h4>
-                            <p>发现所有可用的优质房间</p>
+                            <h4>Browse Rooms</h4>
+                            <p>Discover all available quality rooms</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-item-icon">📅</div>
                         <div class="feature-item-text">
-                            <h4>在线预订</h4>
-                            <p>选择日期轻松预订</p>
+                            <h4>Online Booking</h4>
+                            <p>Select dates to book easily</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-item-icon">💳</div>
                         <div class="feature-item-text">
-                            <h4>安全支付</h4>
-                            <p>可靠的交易系统</p>
+                            <h4>Secure Payment</h4>
+                            <p>Reliable transaction system</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-item-icon">⚙️</div>
                         <div class="feature-item-text">
-                            <h4>完整管理</h4>
-                            <p>专业的系统管理工具</p>
+                            <h4>Complete Management</h4>
+                            <p>Professional system management tools</p>
                         </div>
                     </div>
                 </div>
@@ -391,50 +391,50 @@
             @auth
                 <!-- 已登录用户 -->
                 <div class="welcome-card">
-                    <h2>欢迎回来，{{ auth()->user()->name }}！</h2>
+                    <h2>Welcome back, {{ auth()->user()->name }}!</h2>
                     <div class="role-badge @if (auth()->user()->role === 'admin') admin @endif">
                         @if (auth()->user()->role === 'admin')
-                            👑 管理员账户
+                            👑 Admin Account
                         @else
-                            🏠 租客账户
+                            🏠 Tenant Account
                         @endif
                     </div>
 
                     <div class="welcome-actions">
                         @if (auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">📊 进入管理仪表板</a>
-                            <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary">🏠 房间管理</a>
+                            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">📊 Admin Dashboard</a>
+                            <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary">🏠 Room Management</a>
                         @else
-                            <a href="{{ route('tenant.rooms') }}" class="btn btn-primary">🔍 浏览房间</a>
-                            <a href="{{ route('tenant.bookings.my') }}" class="btn btn-secondary">📋 我的订单</a>
+                            <a href="{{ route('tenant.rooms') }}" class="btn btn-primary">🔍 Browse Rooms</a>
+                            <a href="{{ route('tenant.bookings.my') }}" class="btn btn-secondary">📋 My Bookings</a>
                         @endif
                     </div>
 
-                    <a href="{{ route('profile.edit') }}" style="color: #667eea; text-decoration: none; font-size: 14px;">✏️ 编辑个人资料</a>
+                    <a href="{{ route('profile.edit') }}" style="color: #667eea; text-decoration: none; font-size: 14px;">✏️ Edit Profile</a>
 
                     <div class="info-section">
                         <h3>
                             @if (auth()->user()->role === 'admin')
-                                👑 管理员功能
+                                👑 Admin Functions
                             @else
-                                🏠 租客功能
+                                🏠 Tenant Functions
                             @endif
                         </h3>
                         <ul class="info-list">
                             @if (auth()->user()->role === 'admin')
-                                <li>添加和编辑房间</li>
-                                <li>审批订单申请</li>
-                                <li>管理租客账户</li>
-                                <li>查看系统数据</li>
-                                <li>管理房间清单</li>
-                                <li>跟踪预订情况</li>
+                                <li>Add and edit rooms</li>
+                                <li>Approve order applications</li>
+                                <li>Manage tenant accounts</li>
+                                <li>View system data</li>
+                                <li>Manage room list</li>
+                                <li>Track booking status</li>
                             @else
-                                <li>浏览可用房间</li>
-                                <li>在线预订房间</li>
-                                <li>查看订单状态</li>
-                                <li>取消订单</li>
-                                <li>管理个人资料</li>
-                                <li>支付管理</li>
+                                <li>Browse available rooms</li>
+                                <li>Book rooms online</li>
+                                <li>View order status</li>
+                                <li>Cancel orders</li>
+                                <li>Manage personal profile</li>
+                                <li>Payment management</li>
                             @endif
                         </ul>
                     </div>
@@ -443,33 +443,33 @@
                 <!-- 未登录用户 -->
                 <div class="card">
                     <div class="card-header">
-                        <h2>开始体验</h2>
-                        <p>登录或注册以开始使用系统</p>
+                        <h2>Start Experience</h2>
+                        <p>Login or register to start using the system</p>
                     </div>
                     
                     <div class="card-body">
-                        <a href="{{ route('login') }}" class="btn btn-primary">🔐 登录</a>
+                        <a href="{{ route('login') }}" class="btn btn-primary">🔐 Login</a>
                         <div class="divider"></div>
-                        <a href="{{ route('register') }}" class="btn btn-secondary">✍️ 注册新账户</a>
+                        <a href="{{ route('register') }}" class="btn btn-secondary">✍️ Register</a>
                     </div>
 
                     <div class="info-section">
-                        <h3>🏠 租客可以</h3>
+                        <h3>🏠 Tenant</h3>
                         <ul class="info-list">
-                            <li>浏览所有房间</li>
-                            <li>在线预订房间</li>
-                            <li>查看订单动态</li>
-                            <li>管理个人资料</li>
+                            <li>Browse all rooms</li>
+                            <li>Online booking rooms</li>
+                            <li>View order status</li>
+                            <li>Manage personal profile</li>
                         </ul>
                     </div>
 
                     <div class="info-section">
-                        <h3>👑 管理员可以</h3>
+                        <h3>👑Admin</h3>
                         <ul class="info-list">
-                            <li>房间管理</li>
-                            <li>订单审派</li>
-                            <li>租客管理</li>
-                            <li>数据统计</li>
+                            <li>Room management</li>
+                            <li>Order review and assignment</li>
+                            <li>Tenant management</li>
+                            <li>Data statistics</li>
                         </ul>
                     </div>
                 </div>

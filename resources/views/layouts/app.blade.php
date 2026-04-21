@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', '房间租赁管理系统')</title>
+    <title>@yield('title', 'Room Rental Management System')</title>
     <style>
         * {
             margin: 0;
@@ -401,19 +401,19 @@
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="/" class="navbar-brand">🏨 房间租赁管理系统</a>
+        <a href="/" class="navbar-brand">🏨 Room Rental Management System</a>
         
         @auth
             <div class="navbar-center">
                 @if (auth()->user()->role === 'admin')
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">仪表板</a>
-                    <a href="{{ route('admin.rooms.index') }}" class="nav-link {{ request()->routeIs('admin.rooms.*') ? 'active' : '' }}">房间管理</a>
-                    <a href="{{ route('admin.bookings.index') }}" class="nav-link {{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">订单管理</a>
-                    <a href="{{ route('admin.tenants') }}" class="nav-link {{ request()->routeIs('admin.tenants') ? 'active' : '' }}">租客管理</a>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
+                    <a href="{{ route('admin.rooms.index') }}" class="nav-link {{ request()->routeIs('admin.rooms.*') ? 'active' : '' }}">Room Management</a>
+                    <a href="{{ route('admin.bookings.index') }}" class="nav-link {{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">Order Management</a>
+                    <a href="{{ route('admin.tenants') }}" class="nav-link {{ request()->routeIs('admin.tenants') ? 'active' : '' }}">Tenant Management</a>
                 @else
-                    <a href="{{ route('tenant.rooms') }}" class="nav-link {{ request()->routeIs('tenant.rooms', 'tenant.book-room', 'tenant.store-booking') ? 'active' : '' }}">浏览房间</a>
-                    <a href="{{ route('tenant.bookings.my') }}" class="nav-link {{ request()->routeIs('tenant.bookings.*') ? 'active' : '' }}">我的订单</a>
-                    <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">个人资料</a>
+                    <a href="{{ route('tenant.rooms') }}" class="nav-link {{ request()->routeIs('tenant.rooms', 'tenant.book-room', 'tenant.store-booking') ? 'active' : '' }}">View Rooms</a>
+                    <a href="{{ route('tenant.bookings.my') }}" class="nav-link {{ request()->routeIs('tenant.bookings.*') ? 'active' : '' }}">My Orders</a>
+                    <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">Profile</a>
                 @endif
             </div>
 
@@ -422,15 +422,15 @@
                     <span class="user-name">👤 {{ auth()->user()->name }}</span>
                     <span class="role-badge">
                         @if (auth()->user()->role === 'admin')
-                            👑 管理员
+                            👑 Administrator
                         @else
-                            🏠 租客
+                            🏠 Tenant
                         @endif
                     </span>
                 </div>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" class="logout-btn">🚪 登出</button>
+                    <button type="submit" class="logout-btn">🚪 Logout</button>
                 </form>
             </div>
         @endauth
@@ -452,7 +452,7 @@
         
         @if ($errors->any())
             <div class="alert alert-error">
-                <strong>请修正以下错误：</strong>
+                <strong>Please correct the following errors：</strong>
                 <ul class="error-list">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -466,7 +466,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 房间租赁管理系统 | 所有权利保留</p>
+        <p>&copy; 2026 Room Rental Management System | All Rights Reserved</p>
     </footer>
 
     @yield('js')

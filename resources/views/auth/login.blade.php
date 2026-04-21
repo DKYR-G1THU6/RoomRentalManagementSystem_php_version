@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录 - 房间租赁管理系统</title>
+    <title>Login - Room Rental Management System</title>
     <style>
         * {
             margin: 0;
@@ -244,11 +244,11 @@
     <!-- 导航栏 -->
     <div class="navbar">
         <a href="{{ url('/') }}" class="navbar-brand">
-            🏨 房间租赁管理系统
+            🏨 Room Rental Management System
         </a>
         <div class="navbar-actions">
-            <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">返回首页</a>
-            <a href="{{ route('register') }}" class="nav-btn nav-btn-primary">注册</a>
+            <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">Back to Home</a>
+            <a href="{{ route('register') }}" class="nav-btn nav-btn-primary">Register</a>
         </div>
     </div>
 
@@ -256,8 +256,8 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2>🔐 登录</h2>
-                <p>进入您的账户</p>
+                <h2>🔐 Login</h2>
+                <p>Enter your account</p>
             </div>
 
             @if ($errors->any())
@@ -278,7 +278,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="email">邮箱地址</label>
+                    <label for="email">Email Address</label>
                     <input 
                         type="email" 
                         id="email" 
@@ -286,7 +286,7 @@
                         value="{{ old('email') }}"
                         required 
                         autofocus
-                        placeholder="输入您的邮箱"
+                        placeholder="Enter your email address"
                     >
                     @error('email')
                         <div class="error">{{ $message }}</div>
@@ -294,13 +294,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">密码</label>
+                    <label for="password">Password</label>
                     <input 
                         type="password" 
                         id="password" 
                         name="password" 
                         required
-                        placeholder="输入您的密码"
+                        placeholder="Enter your password"
                     >
                     @error('password')
                         <div class="error">{{ $message }}</div>
@@ -309,15 +309,15 @@
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="remember" name="remember" value="on">
-                    <label for="remember">记住我</label>
+                    <label for="remember">Remember me</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary">登录</button>
+                <button type="submit" class="btn btn-primary">Login</button>
 
                 <div class="footer-actions">
-                    <a href="{{ route('password.request') }}">忘记密码？</a>
+                    <a href="{{ route('password.request') }}">Forget Password?</a>
                     <div class="register-link">
-                        还没有账户？<a href="{{ route('register') }}">立即注册</a>
+                        Don't have an account？<a href="{{ route('register') }}">Register now</a>
                     </div>
                 </div>
             </form>

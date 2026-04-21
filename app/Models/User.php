@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'email_verified_at',// 这是因为我的RegisteredUserController.php 加了auto mark email_verified_at
     ];
 
     /**
