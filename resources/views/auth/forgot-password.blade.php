@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>忘记密码 - 房间租赁管理系统</title>
+    <title>Forget Password - Room Rental Management System</title>
     <style>
         * {
             margin: 0;
@@ -223,11 +223,11 @@
     <!-- 导航栏 -->
     <div class="navbar">
         <a href="{{ url('/') }}" class="navbar-brand">
-            🏨 房间租赁管理系统
+            🏨 Room Rental Management System
         </a>
         <div class="navbar-actions">
-            <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">返回首页</a>
-            <a href="{{ route('login') }}" class="nav-btn nav-btn-primary">登录</a>
+            <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">Back to Home</a>
+            <a href="{{ route('login') }}" class="nav-btn nav-btn-primary">Login</a>
         </div>
     </div>
 
@@ -235,8 +235,8 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2>🔑 忘记密码</h2>
-                <p>没关系，告诉我们您的邮箱地址，我们将发送一个密码重置链接让您设置新密码。</p>
+                <h2>🔑 Forget Password</h2>
+                <p>No problem, tell us your email address, and we will send you a password reset link to set a new password.</p>
             </div>
 
             @if ($errors->any())
@@ -257,7 +257,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="email">邮箱地址</label>
+                    <label for="email">Email Address</label>
                     <input 
                         type="email" 
                         id="email" 
@@ -265,17 +265,17 @@
                         value="{{ old('email') }}"
                         required 
                         autofocus
-                        placeholder="输入您注册时使用的邮箱"
+                        placeholder="Enter your registered email address"
                     >
                     @error('email')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">📧 发送密码重置链接</button>
+                <button type="submit" class="btn btn-primary">📧 Send Password Reset Link</button>
 
                 <div class="footer-actions">
-                    <a href="{{ route('login') }}">返回登录</a>
+                    <a href="{{ route('login') }}">Back to Login</a>
                 </div>
             </form>
         </div>

@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
-@section('title', '个人资料')
+@section('title', 'Edit Profile')
 
 @section('content')
     <div style="margin-bottom: 40px;">
-        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">👤 个人资料</h2>
-        <p style="color: #7f8c8d; margin: 0;">管理你的账户信息</p>
+        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">👤 Edit Profile</h2>
+        <p style="color: #7f8c8d; margin: 0;">Manage your account information</p>
     </div>
 
     <!-- 显示模式 -->
     <div id="displayMode" style="width: 600px;">
         <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
             <div style="margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #ecf0f1;">
-                <label style="font-weight: 600; color: #7f8c8d; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">用户名</label>
+                <label style="font-weight: 600; color: #7f8c8d; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">Username</label>
                 <p style="font-size: 18px; color: #2c3e50; margin: 10px 0 0 0; font-weight: 500;">{{ auth()->user()->name }}</p>
             </div>
             
             <div style="margin-bottom: 30px;">
-                <label style="font-weight: 600; color: #7f8c8d; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">邮箱</label>
+                <label style="font-weight: 600; color: #7f8c8d; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">Email</label>
                 <p style="font-size: 18px; color: #2c3e50; margin: 10px 0 0 0; font-weight: 500;">{{ auth()->user()->email }}</p>
             </div>
             
-            <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">✏️ 编辑信息</button>
+            <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">✏️ Edit Information</button>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
                 @method('PATCH')
                 
                 <div style="margin-bottom: 24px;">
-                    <label for="name" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">用户名 <span style="color: #e74c3c;">*</span></label>
+                    <label for="name" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Username <span style="color: #e74c3c;">*</span></label>
                     <input 
                         type="text" 
                         id="name" 
@@ -50,7 +50,7 @@
                 </div>
                 
                 <div style="margin-bottom: 24px;">
-                    <label for="email" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">邮箱 <span style="color: #e74c3c;">*</span></label>
+                    <label for="email" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Email <span style="color: #e74c3c;">*</span></label>
                     <input 
                         type="email" 
                         id="email" 
@@ -67,13 +67,13 @@
                 </div>
 
                 <div style="margin-bottom: 30px;">
-                    <label for="password" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">密码 <span style="color: #e74c3c;">*</span></label>
+                    <label for="password" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Password <span style="color: #e74c3c;">*</span></label>
                     <div style="position: relative;">
                         <input 
                             type="password" 
                             id="password" 
                             name="password" 
-                            placeholder="输入新密码"
+                            placeholder="Enter new password"
                             style="width: 100%; padding: 12px 15px; padding-right: 45px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; transition: all 0.3s;"
                             onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
                             onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
@@ -88,13 +88,13 @@
                 </div>
 
                 <div style="margin-bottom: 30px;">
-                    <label for="password_confirmation" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">确认密码 <span style="color: #e74c3c;">*</span></label>
+                    <label for="password_confirmation" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Confirm Password <span style="color: #e74c3c;">*</span></label>
                     <div style="position: relative;">
                         <input 
                             type="password" 
                             id="password_confirmation" 
                             name="password_confirmation" 
-                            placeholder="确认新密码"
+                            placeholder="Confirm new password"
                             style="width: 100%; padding: 12px 15px; padding-right: 45px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; transition: all 0.3s;"
                             onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
                             onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
@@ -106,8 +106,8 @@
                 </div>
                 
                 <div style="display: flex; gap: 12px;">
-                    <button type="submit" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">💾 保存更改</button>
-                    <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#7f8c8d';" onmouseout="this.style.backgroundColor='#95a5a6';">❌ 取消</button>
+                    <button type="submit" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">💾 Save Changes</button>
+                    <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#7f8c8d';" onmouseout="this.style.backgroundColor='#95a5a6';">❌ Cancel</button>
                 </div>
             </form>
         </div>
