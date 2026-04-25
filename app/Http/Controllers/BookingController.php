@@ -13,7 +13,7 @@ class BookingController extends Controller
     /**
      * Tenant views available rooms.
      */
-    public function availableRooms()
+    public function availableRooms(Request $request)
     {
         $this->authorize('viewAvailable', Room::class);
 
@@ -22,13 +22,45 @@ class BookingController extends Controller
             ->whereDate('end_date', '>=', now()->toDateString())
             ->pluck('room_id');
 
-        $rooms = Room::query()
+        $search = trim((string) $request->query('q', ''));
+        $type = $request->query('type');
+        $priceMin = $request->query('price_min');
+        $priceMax = $request->query('price_max');
+
+        $query = Room::query()
             ->where('status', 'available')
             ->whereNotIn('id', $occupiedRoomIds)
-            ->orderBy('id')
-            ->get();
+            ->orderBy('id');
 
-        return view('tenant.rooms.available', compact('rooms'));
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('room_number', 'like', "%{$search}%")
+                    ->orWhere('type', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        if (is_string($type) && $type !== '') {
+            $query->where('type', $type);
+        }
+
+        if (is_numeric($priceMin)) {
+            $query->where('price', '>=', (float) $priceMin);
+        }
+
+        if (is_numeric($priceMax)) {
+            $query->where('price', '<=', (float) $priceMax);
+        }
+
+        $rooms = $query->get();
+
+        $roomTypes = Room::query()
+            ->select('type')
+            ->distinct()
+            ->orderBy('type')
+            ->pluck('type');
+
+        return view('tenant.rooms.available', compact('rooms', 'roomTypes'));
     }
 
     /**
@@ -118,16 +150,67 @@ class BookingController extends Controller
     /**
      * Admin views all bookings.
      */
-    public function allBookings()
+    public function allBookings(Request $request)
     {
         $this->authorize('viewAdminList', Booking::class);
 
-        $bookings = Booking::with('user', 'room')
-            ->orderBy('status')
-            ->latest()
-            ->get();
+        $search = trim((string) $request->query('q', ''));
+        $status = $request->query('status');
+        $roomType = $request->query('room_type');
+        $dateFrom = $request->query('date_from');
+        $dateTo = $request->query('date_to');
+        $priceMin = $request->query('price_min');
+        $priceMax = $request->query('price_max');
 
-        return view('admin.bookings.index', compact('bookings'));
+        $query = Booking::query()->with('user', 'room');
+
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('user', function ($uq) use ($search) {
+                    $uq->where('name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                })->orWhereHas('room', function ($rq) use ($search) {
+                    $rq->where('room_number', 'like', "%{$search}%")
+                        ->orWhere('type', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        if (in_array($status, ['pending', 'active', 'completed', 'cancelled'], true)) {
+            $query->where('status', $status);
+        }
+
+        if (is_string($roomType) && $roomType !== '') {
+            $query->whereHas('room', function ($q) use ($roomType) {
+                $q->where('type', $roomType);
+            });
+        }
+
+        if (is_string($dateFrom) && $dateFrom !== '') {
+            $query->whereDate('start_date', '>=', $dateFrom);
+        }
+
+        if (is_string($dateTo) && $dateTo !== '') {
+            $query->whereDate('end_date', '<=', $dateTo);
+        }
+
+        if (is_numeric($priceMin)) {
+            $query->where('total_price', '>=', (float) $priceMin);
+        }
+
+        if (is_numeric($priceMax)) {
+            $query->where('total_price', '<=', (float) $priceMax);
+        }
+
+        $bookings = $query->orderBy('status')->latest()->get();
+
+        $roomTypes = Room::query()
+            ->select('type')
+            ->distinct()
+            ->orderBy('type')
+            ->pluck('type');
+
+        return view('admin.bookings.index', compact('bookings', 'roomTypes'));
     }
 
     /**

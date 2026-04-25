@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class TenantController extends Controller
 { 
     /**
-     * 租客仪表板
+     * Tenant dashboard showing booking stats and recent bookings.
      */
     public function dashboard()
     {

@@ -8,6 +8,60 @@
     </div>
     
     <h2 style="font-size: 24px; color: #2c3e50; margin-bottom: 30px;">Booking Management</h2>
+
+    <form method="GET" action="{{ route('admin.bookings.index') }}" style="margin-bottom: 20px;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto; gap: 10px; align-items: end;">
+            <div>
+                <label for="q" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Search</label>
+                <input id="q" name="q" type="text" value="{{ request('q') }}" placeholder="Tenant / email / room no / type" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <label for="status" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Status</label>
+                <select id="status" name="status" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+                    <option value="">All</option>
+                    <option value="pending" @selected(request('status') === 'pending')>Pending</option>
+                    <option value="active" @selected(request('status') === 'active')>Active</option>
+                    <option value="completed" @selected(request('status') === 'completed')>Completed</option>
+                    <option value="cancelled" @selected(request('status') === 'cancelled')>Cancelled</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="room_type" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Room Type</label>
+                <select id="room_type" name="room_type" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+                    <option value="">All</option>
+                    @foreach ($roomTypes as $type)
+                        <option value="{{ $type }}" @selected(request('room_type') === $type)>{{ $type }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div>
+                <label for="date_from" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">From</label>
+                <input id="date_from" name="date_from" type="date" value="{{ request('date_from') }}" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <label for="date_to" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">To</label>
+                <input id="date_to" name="date_to" type="date" value="{{ request('date_to') }}" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <label for="price_min" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Min RM</label>
+                <input id="price_min" name="price_min" type="number" step="0.01" value="{{ request('price_min') }}" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <label for="price_max" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Max RM</label>
+                <input id="price_max" name="price_max" type="number" step="0.01" value="{{ request('price_max') }}" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary" style="padding: 10px 14px;">Filter</button>
+            </div>
+        </div>
+    </form>
     
     @php
         $pendingBookings = $bookings->where('status', 'pending');

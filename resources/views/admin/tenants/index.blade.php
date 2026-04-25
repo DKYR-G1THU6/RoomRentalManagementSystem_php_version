@@ -8,6 +8,33 @@
     </div>
     
     <h2 style="font-size: 24px; color: #2c3e50; margin-bottom: 30px;">Tenant Management</h2>
+
+    <form method="GET" action="{{ route('admin.tenants') }}" style="margin-bottom: 20px;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px; align-items: end;">
+            <div>
+                <label for="q" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Search</label>
+                <input id="q" name="q" type="text" value="{{ request('q') }}" placeholder="Username / email" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <label for="active_booking" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Active Booking</label>
+                <select id="active_booking" name="active_booking" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+                    <option value="">All</option>
+                    <option value="1" @selected(request('active_booking') === '1')>Has Active</option>
+                    <option value="0" @selected(request('active_booking') === '0')>No Active</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="min_bookings" style="display:block; font-size: 12px; color: #7f8c8d; margin-bottom: 6px;">Min Total Bookings</label>
+                <input id="min_bookings" name="min_bookings" type="number" min="0" value="{{ request('min_bookings') }}" style="width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px;">
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary" style="padding: 10px 14px;">Filter</button>
+            </div>
+        </div>
+    </form>
     
     @if ($tenants->count() > 0)
         <table>
@@ -27,13 +54,10 @@
                         <td><strong>{{ $tenant->name }}</strong></td>
                         <td>{{ $tenant->email }}</td>
                         <td>{{ $tenant->created_at->format('Y-m-d') }}</td>
-                        <td>{{ $tenant->bookings->count() }}</td>
+                        <td>{{ $tenant->bookings_count ?? 0 }}</td>
                         <td>
-                            @php
-                                $activeCount = $tenant->bookings->where('status', 'active')->count();
-                            @endphp
-                            @if ($activeCount > 0)
-                                <span class="badge badge-available">{{ $activeCount }}</span>
+                            @if (($tenant->active_bookings_count ?? 0) > 0)
+                                <span class="badge badge-available">{{ $tenant->active_bookings_count }}</span>
                             @else
                                 <span style="color: #bdc3c7;">-</span>
                             @endif
