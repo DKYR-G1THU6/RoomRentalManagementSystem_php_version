@@ -7,7 +7,7 @@ email: tehkhoonyew411@1utar.my
 password: 12345678
 
 User registration
-1. we register new user account in this rental system
+1. we register new user account in this rental system (routes/auth.php & app\Http\Controllers\Auth\RegisteredUserController.php)
 2. The registration page requires standard details like name, email, and password and validation(  pasword matching & must 8 characters)
 3. By default, newly registered users are assigned the tenant role
 

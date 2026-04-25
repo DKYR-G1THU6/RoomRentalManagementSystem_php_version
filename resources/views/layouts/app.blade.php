@@ -37,7 +37,7 @@
         .navbar-brand {
             font-size: 24px;
             font-weight: bold;
-            color: #667eea;
+            color: #2e2d2dff;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -89,7 +89,7 @@
         }
 
         .role-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #533ca5ff;
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
