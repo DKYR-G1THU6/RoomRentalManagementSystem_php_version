@@ -29,11 +29,11 @@
             <div class="info-label">Status</div>
             <div class="info-value">
                 @if ($room->status === 'available')
-                    <span class="badge badge-available">✓ Available</span>
+                    <span class="badge badge-available">Available</span>
                 @elseif ($room->status === 'rented')
-                    <span class="badge badge-rented">✗ Rented</span>
+                    <span class="badge badge-rented">Rented</span>
                 @else
-                    <span class="badge badge-maintenance">⚙ Maintenance</span>
+                    <span class="badge badge-maintenance">Maintenance</span>
                 @endif
             </div>
         </div>
@@ -61,12 +61,12 @@
     </div>
     
     <div class="actions">
-        <a href="{{ route('admin.rooms.edit', $room->id) }}" class="btn btn-warning">✏️ Edit Room</a>
+        <a href="{{ route('admin.rooms.edit', $room->id) }}" class="btn btn-warning">Edit Room</a>
         
         <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" style="display: inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">🗑️ Delete Room</button>
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete Room</button>
         </form>
         
         <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary">← Back to List</a>

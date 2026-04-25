@@ -7,7 +7,7 @@
         <a href="{{ route('admin.dashboard') }}" style="color: #3498db; text-decoration: none;">← Back to Dashboard</a>
     </div>
     
-    <h2 style="font-size: 24px; color: #2c3e50; margin-bottom: 30px;">👥 Tenant Management</h2>
+    <h2 style="font-size: 24px; color: #2c3e50; margin-bottom: 30px;">Tenant Management</h2>
     
     @if ($tenants->count() > 0)
         <table>
@@ -24,7 +24,7 @@
             <tbody>
                 @foreach ($tenants as $tenant)
                     <tr>
-                        <td><strong>👤 {{ $tenant->name }}</strong></td>
+                        <td><strong>{{ $tenant->name }}</strong></td>
                         <td>{{ $tenant->email }}</td>
                         <td>{{ $tenant->created_at->format('Y-m-d') }}</td>
                         <td>{{ $tenant->bookings->count() }}</td>
@@ -45,7 +45,7 @@
                             >
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="padding: 6px 10px; font-size: 12px;">🗑️ Delete</button>
+                                <button type="submit" class="btn btn-danger" style="padding: 6px 10px; font-size: 12px;">Delete</button>
                             </form>
                         </td>
                     </tr>

@@ -63,7 +63,7 @@
         <div class="form-group">
             <label for="status">Status <span style="color: #e74c3c;">*</span></label>
             <select id="status" name="status_display" disabled style="background-color: #ecf0f1; cursor: not-allowed;">
-                <option value="available">✓ Available</option>
+                <option value="available">Available</option>
             </select>
             <input type="hidden" name="status" value="available">
             <p style="font-size: 12px; color: #7f8c8d; margin-top: 5px;">New rooms are set to Available by default. You can change the status later on the edit page.</p>
@@ -85,8 +85,8 @@
         </div>
         
         <div style="margin-top: 30px; display: flex; gap: 10px;">
-            <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 15px; font-weight: 600;">➕ Add Room</button>
-            <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 15px; font-weight: 600; text-decoration: none;">❌ Cancel</a>
+            <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 15px; font-weight: 600;">Add Room</button>
+            <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 15px; font-weight: 600; text-decoration: none;">Cancel</a>
         </div>
     </form>
 @endsection

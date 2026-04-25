@@ -4,7 +4,7 @@
 
 @section('content')
     <div style="margin-bottom: 40px;">
-        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">👤 Edit Profile</h2>
+        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">Edit Profile</h2>
         <p style="color: #7f8c8d; margin: 0;">Manage your account information</p>
     </div>
 
@@ -21,7 +21,7 @@
                 <p style="font-size: 18px; color: #2c3e50; margin: 10px 0 0 0; font-weight: 500;">{{ auth()->user()->email }}</p>
             </div>
             
-            <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">✏️ Edit Information</button>
+            <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Edit Information</button>
         </div>
     </div>
 
@@ -79,7 +79,7 @@
                             onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
                         >
                         <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #667eea; font-size: 18px; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
-                            <span id="passwordEyeIcon">👁️</span>
+                            <span id="passwordEyeIcon">Show</span>
                         </button>
                     </div>
                     @error('password')
@@ -100,14 +100,14 @@
                             onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
                         >
                         <button type="button" onclick="togglePasswordConfirmationVisibility()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #667eea; font-size: 18px; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
-                            <span id="passwordConfirmationEyeIcon">👁️</span>
+                            <span id="passwordConfirmationEyeIcon">Show</span>
                         </button>
                     </div>
                 </div>
                 
                 <div style="display: flex; gap: 12px;">
-                    <button type="submit" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">💾 Save Changes</button>
-                    <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#7f8c8d';" onmouseout="this.style.backgroundColor='#95a5a6';">❌ Cancel</button>
+                    <button type="submit" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Save Changes</button>
+                    <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#7f8c8d';" onmouseout="this.style.backgroundColor='#95a5a6';">Cancel</button>
                 </div>
             </form>
         </div>
@@ -133,10 +133,10 @@
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                eyeIcon.textContent = '🙈';
+                eyeIcon.textContent = 'Hide';
             } else {
                 passwordInput.type = 'password';
-                eyeIcon.textContent = '👁️';
+                eyeIcon.textContent = 'Show';
             }
         }
 
@@ -146,10 +146,10 @@
             
             if (passwordConfirmationInput.type === 'password') {
                 passwordConfirmationInput.type = 'text';
-                eyeIcon.textContent = '🙈';
+                eyeIcon.textContent = 'Hide';
             } else {
                 passwordConfirmationInput.type = 'password';
-                eyeIcon.textContent = '👁️';
+                eyeIcon.textContent = 'Show';
             }
         }
     </script>

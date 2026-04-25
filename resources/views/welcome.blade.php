@@ -327,14 +327,14 @@
     <!-- 导航栏 -->
     <div class="navbar">
         <div class="navbar-brand">
-            🏨 Room Rental Management System
+            Room Rental Management System
         </div>
         @auth
             <div class="navbar-actions">
                 <span style="color: #2c3e50; font-weight: 600;">{{ auth()->user()->name }}</span>
                 <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
                     @csrf
-                    <button type="submit" class="nav-btn nav-btn-primary">🚪 Log Out</button>
+                    <button type="submit" class="nav-btn nav-btn-primary">Log Out</button>
                 </form>
             </div>
         @else
@@ -355,28 +355,28 @@
                 
                 <div class="feature-list">
                     <div class="feature-item">
-                        <div class="feature-item-icon">🔍</div>
+                        <div class="feature-item-icon"></div>
                         <div class="feature-item-text">
                             <h4>Browse Rooms</h4>
                             <p>Discover all available quality rooms</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-item-icon">📅</div>
+                        <div class="feature-item-icon"></div>
                         <div class="feature-item-text">
                             <h4>Online Booking</h4>
                             <p>Select dates to book easily</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-item-icon">💳</div>
+                        <div class="feature-item-icon"></div>
                         <div class="feature-item-text">
                             <h4>Secure Payment</h4>
                             <p>Reliable transaction system</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-item-icon">⚙️</div>
+                        <div class="feature-item-icon"></div>
                         <div class="feature-item-text">
                             <h4>Complete Management</h4>
                             <p>Professional system management tools</p>
@@ -394,30 +394,30 @@
                     <h2>Welcome back, {{ auth()->user()->name }}!</h2>
                     <div class="role-badge @if (auth()->user()->role === 'admin') admin @endif">
                         @if (auth()->user()->role === 'admin')
-                            👑 Admin Account
+                            Admin Account
                         @else
-                            🏠 Tenant Account
+                            Tenant Account
                         @endif
                     </div>
 
                     <div class="welcome-actions">
                         @if (auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">📊 Admin Dashboard</a>
-                            <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary">🏠 Room Management</a>
+                            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Admin Dashboard</a>
+                            <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary">Room Management</a>
                         @else
-                            <a href="{{ route('tenant.rooms') }}" class="btn btn-primary">🔍 Browse Rooms</a>
-                            <a href="{{ route('tenant.bookings.my') }}" class="btn btn-secondary">📋 My Bookings</a>
+                            <a href="{{ route('tenant.rooms') }}" class="btn btn-primary">Browse Rooms</a>
+                            <a href="{{ route('tenant.bookings.my') }}" class="btn btn-secondary">My Bookings</a>
                         @endif
                     </div>
 
-                    <a href="{{ route('profile.edit') }}" style="color: #667eea; text-decoration: none; font-size: 14px;">✏️ Edit Profile</a>
+                    <a href="{{ route('profile.edit') }}" style="color: #667eea; text-decoration: none; font-size: 14px;">Edit Profile</a>
 
                     <div class="info-section">
                         <h3>
                             @if (auth()->user()->role === 'admin')
-                                👑 Admin Functions
+                                Admin Functions
                             @else
-                                🏠 Tenant Functions
+                                Tenant Functions
                             @endif
                         </h3>
                         <ul class="info-list">
@@ -448,13 +448,13 @@
                     </div>
                     
                     <div class="card-body">
-                        <a href="{{ route('login') }}" class="btn btn-primary">🔐 Login</a>
+                        <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
                         <div class="divider"></div>
-                        <a href="{{ route('register') }}" class="btn btn-secondary">✍️ Register</a>
+                        <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
                     </div>
 
                     <div class="info-section">
-                        <h3>🏠 Tenant</h3>
+                        <h3>Tenant</h3>
                         <ul class="info-list">
                             <li>Browse all rooms</li>
                             <li>Online booking rooms</li>
@@ -464,7 +464,7 @@
                     </div>
 
                     <div class="info-section">
-                        <h3>👑Admin</h3>
+                        <h3>Admin</h3>
                         <ul class="info-list">
                             <li>Room management</li>
                             <li>Order review and assignment</li>

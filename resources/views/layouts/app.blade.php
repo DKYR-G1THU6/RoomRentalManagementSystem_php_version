@@ -354,7 +354,7 @@
         }
 
         .error-list li:before {
-            content: "✗ ";
+            content: "- ";
             margin-right: 8px;
         }
 
@@ -401,7 +401,7 @@
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="/" class="navbar-brand">🏨 Room Rental Management System</a>
+        <a href="/" class="navbar-brand">Room Rental Management System</a>
         
         @auth
             <div class="navbar-center">
@@ -419,18 +419,18 @@
 
             <div class="navbar-right">
                 <div class="user-info">
-                    <span class="user-name">👤 {{ auth()->user()->name }}</span>
+                    <span class="user-name">{{ auth()->user()->name }}</span>
                     <span class="role-badge">
                         @if (auth()->user()->role === 'admin')
-                            👑 Administrator
+                            Administrator
                         @else
-                            🏠 Tenant
+                            Tenant
                         @endif
                     </span>
                 </div>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" class="logout-btn">🚪 Logout</button>
+                    <button type="submit" class="logout-btn">Logout</button>
                 </form>
             </div>
         @endauth
@@ -440,13 +440,13 @@
     <div class="container">
         @if ($message = session('success'))
             <div class="alert alert-success">
-                ✓ {{ $message }}
+                {{ $message }}
             </div>
         @endif
 
         @if ($message = session('error'))
             <div class="alert alert-error">
-                ✗ {{ $message }}
+                {{ $message }}
             </div>
         @endif
         

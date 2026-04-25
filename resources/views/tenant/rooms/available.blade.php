@@ -4,7 +4,7 @@
 
 @section('content')
     <div style="margin-bottom: 40px;">
-        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">🔍 Browse Available Rooms</h2>
+        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">Browse Available Rooms</h2>
         <p style="color: #7f8c8d; margin: 0;">Choose a room to make a booking</p>
     </div>
     
@@ -18,35 +18,35 @@
                                 <h3 style="margin: 0; font-size: 22px;">Room #{{ $room->room_number }}</h3>
                                 <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">{{ $room->type }}</p>
                             </div>
-                            <div style="font-size: 28px;">🏠</div>
+                            <div style="font-size: 28px;"></div>
                         </div>
                     </div>
                     
                     <div style="padding: 25px;">
                         <div style="margin-bottom: 20px;">
-                            <p style="color: #7f8c8d; font-size: 13px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">💰 Price Per Night</p>
+                            <p style="color: #7f8c8d; font-size: 13px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">Price Per Night</p>
                             <p style="color: #2c3e50; font-size: 28px; font-weight: bold; margin: 0;">RM{{ number_format($room->price, 2) }}</p>
                         </div>
                         
                         @if ($room->description)
                             <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #ecf0f1;">
-                                <p style="color: #7f8c8d; font-size: 13px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">📝 Room Description</p>
+                                <p style="color: #7f8c8d; font-size: 13px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">Room Description</p>
                                 <p style="color: #555; font-size: 14px; margin: 0; line-height: 1.6;">{{ $room->description }}</p>
                             </div>
                         @endif
                         
                         <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                            <span style="display: inline-block; background-color: #d4edda; color: #155724; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">✓ Available</span>
+                            <span style="display: inline-block; background-color: #d4edda; color: #155724; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Available</span>
                         </div>
                         
-                        <a href="{{ route('tenant.book-room', $room->id) }}" style="display: block; width: 100%; padding: 12px; text-align: center; text-decoration: none; background-color: #667eea; color: white; border-radius: 4px; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">📅 Book This Room</a>
+                        <a href="{{ route('tenant.book-room', $room->id) }}" style="display: block; width: 100%; padding: 12px; text-align: center; text-decoration: none; background-color: #667eea; color: white; border-radius: 4px; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Book This Room</a>
                     </div>
                 </div>
             @endforeach
         </div>
     @else
         <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 80px 30px; text-align: center;">
-            <p style="font-size: 18px; color: #7f8c8d; margin-bottom: 30px;">😢 No available rooms at the moment</p>
+            <p style="font-size: 18px; color: #7f8c8d; margin-bottom: 30px;">No available rooms at the moment</p>
             <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 30px;">Please check back later</p>
         </div>
     @endif
