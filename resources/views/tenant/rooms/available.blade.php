@@ -18,6 +18,7 @@
                                 <h3 style="margin: 0; font-size: 22px;">Room #{{ $room->room_number }}</h3>
                                 <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">{{ $room->type }}</p>
                             </div>
+                            <div style="font-size: 28px;"></div>
                         </div>
                     </div>
                     
@@ -53,6 +54,30 @@
 
 @section('css')
     <style>
+        .tenant-room-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .tenant-room-filters {
+            width: 320px;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        .tenant-room-results {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tenant-room-scroll {
+            max-height: calc(100vh - 260px);
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
         @media (max-width: 1400px) {
             .room-grid {
                 grid-template-columns: repeat(3, 1fr) !important;
@@ -60,6 +85,21 @@
         }
         
         @media (max-width: 1024px) {
+            .tenant-room-layout {
+                flex-direction: column;
+            }
+
+            .tenant-room-filters {
+                width: 100%;
+                position: static;
+            }
+
+            .tenant-room-scroll {
+                max-height: none;
+                overflow: visible;
+                padding-right: 0;
+            }
+
             .room-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
             }
