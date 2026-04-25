@@ -4,7 +4,7 @@
 
 @section('content')
     <div style="margin-bottom: 40px;">
-        <h2 style="font-size: 32px; color: #2c3e50; margin: 0;">📋 My Bookings</h2>
+        <h2 style="font-size: 32px; color: #2c3e50; margin: 0;">My Bookings</h2>
     </div>
     
     @if ($bookings->count() > 0)
@@ -18,7 +18,7 @@
         @if ($pendingBookings->count() > 0)
             <div style="margin-bottom: 40px;">
                 <div style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); padding: 20px 25px; border-radius: 8px; display: inline-block; margin-bottom: 20px; color: white;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">⏳ Pending Bookings</h3>
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">Pending Bookings</h3>
                 </div>
                 <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
                     <table style="width: 100%; border-collapse: collapse;">
@@ -58,7 +58,7 @@
         @if ($activeBookings->count() > 0)
             <div style="margin-bottom: 40px;">
                 <div style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%); padding: 20px 25px; border-radius: 8px; display: inline-block; margin-bottom: 20px; color: white;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">🏨 Active Bookings</h3>
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">Active Bookings</h3>
                 </div>
                 <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
                     <table style="width: 100%; border-collapse: collapse;">
@@ -94,7 +94,7 @@
         @if ($completedBookings->count() > 0)
             <div style="margin-bottom: 40px;">
                 <div style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); padding: 20px 25px; border-radius: 8px; display: inline-block; margin-bottom: 20px; color: white;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">✓ Completed Bookings</h3>
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">Completed Bookings</h3>
                 </div>
                 <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
                     <table style="width: 100%; border-collapse: collapse;">
@@ -130,7 +130,7 @@
         @if ($cancelledBookings->count() > 0)
             <div style="margin-bottom: 40px;">
                 <div style="background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); padding: 20px 25px; border-radius: 8px; display: inline-block; margin-bottom: 20px; color: white;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">✗ Cancelled Bookings</h3>
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">Cancelled Bookings</h3>
                 </div>
                 <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
                     <table style="width: 100%; border-collapse: collapse;">
@@ -164,10 +164,10 @@
         @endif
     @else
         <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 80px 40px; text-align: center;">
-            <p style="font-size: 48px; margin-bottom: 20px;">📦</p>
+            
             <p style="font-size: 18px; color: #2c3e50; font-weight: 600; margin-bottom: 10px;">No bookings yet</p>
             <p style="font-size: 14px; color: #7f8c8d; margin-bottom: 30px;">Start browsing available rooms and make a booking</p>
-            <a href="{{ route('tenant.rooms') }}" style="display: inline-block; padding: 14px 30px; background-color: #667eea; color: white; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">🔍 Browse Available Rooms</a>
+            <a href="{{ route('tenant.rooms') }}" style="display: inline-block; padding: 14px 30px; background-color: #667eea; color: white; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Browse Available Rooms</a>
         </div>
     @endif
 @endsection

@@ -62,9 +62,9 @@
         <div class="form-group">
             <label for="status">Status <span style="color: #e74c3c;">*</span></label>
             <select id="status" name="status" required>
-                <option value="available" {{ old('status', $room->status) === 'available' ? 'selected' : '' }}>✓ Available</option>
-                <option value="rented" {{ old('status', $room->status) === 'rented' ? 'selected' : '' }}>✗ Rented</option>
-                <option value="maintenance" {{ old('status', $room->status) === 'maintenance' ? 'selected' : '' }}>⚙ Maintenance</option>
+                <option value="available" {{ old('status', $room->status) === 'available' ? 'selected' : '' }}>Available</option>
+                <option value="rented" {{ old('status', $room->status) === 'rented' ? 'selected' : '' }}>Rented</option>
+                <option value="maintenance" {{ old('status', $room->status) === 'maintenance' ? 'selected' : '' }}>Maintenance</option>
             </select>
             @error('status')
                 <span style="color: #e74c3c; font-size: 13px;">{{ $message }}</span>
@@ -84,8 +84,8 @@
         </div>
         
         <div style="margin-top: 30px; display: flex; gap: 10px;">
-            <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 15px; font-weight: 600;">💾 Save Changes</button>
-            <a href="{{ route('admin.rooms.show', $room->id) }}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 15px; font-weight: 600; text-decoration: none;">❌ Cancel</a>
+            <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 15px; font-weight: 600;">Save Changes</button>
+            <a href="{{ route('admin.rooms.show', $room->id) }}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 15px; font-weight: 600; text-decoration: none;">Cancel</a>
         </div>
     </form>
 @endsection

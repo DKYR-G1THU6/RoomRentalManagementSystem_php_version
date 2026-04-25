@@ -244,7 +244,7 @@
     <!-- 导航栏 -->
     <div class="navbar">
         <a href="{{ url('/') }}" class="navbar-brand">
-            🏨 Room Rental Management System
+            Room Rental Management System
         </a>
         <div class="navbar-actions">
             <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">Back to Home</a>
@@ -256,7 +256,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2>🔐 Login</h2>
+                <h2>Login</h2>
                 <p>Enter your account</p>
             </div>
 

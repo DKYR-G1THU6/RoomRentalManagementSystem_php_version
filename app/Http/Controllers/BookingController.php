@@ -48,7 +48,8 @@ class BookingController extends Controller
     {
         if ($room->status !== 'available') {
             return redirect()->route('tenant.rooms')->with('error', 'This room is not available');
-
+        }
+        
         $this->authorize('create', Booking::class);
         $this->authorize('book', $room);
 

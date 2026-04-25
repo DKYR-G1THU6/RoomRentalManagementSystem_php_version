@@ -11,7 +11,7 @@
     
     <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
         <h2 style="font-size: 24px; color: #2c3e50; margin: 0;">Room Management</h2>
-        <a href="{{ route('admin.rooms.create') }}" class="btn btn-primary">➕ Add New Room</a>
+        <a href="{{ route('admin.rooms.create') }}" class="btn btn-primary">Add New Room</a>
     </div>
     
     @if ($rooms->count() > 0)
@@ -34,11 +34,11 @@
                         <td><strong>RM{{ number_format($room->price, 2) }}</strong></td>
                         <td>
                             @if ($room->status === 'available')
-                                <span class="badge badge-available">✓ Available</span>
+                                <span class="badge badge-available">Available</span>
                             @elseif ($room->status === 'rented')
-                                <span class="badge badge-rented">✗ Rented</span>
+                                <span class="badge badge-rented">Rented</span>
                             @else
-                                <span class="badge badge-maintenance">⚙ Maintenance</span>
+                                <span class="badge badge-maintenance">Maintenance</span>
                             @endif
                         </td>
                         <td>{{ Str::limit($room->description, 30, '...') }}</td>
@@ -58,7 +58,7 @@
     @else
         <div class="info-box" style="text-align: center; padding: 60px 30px;">
             <p style="font-size: 16px; color: #7f8c8d; margin-bottom: 20px;">No rooms found</p>
-            <a href="{{ route('admin.rooms.create') }}" class="btn btn-primary">➕ Add First Room</a>
+            <a href="{{ route('admin.rooms.create') }}" class="btn btn-primary">Add First Room</a>
         </div>
     @endif
 @endsection

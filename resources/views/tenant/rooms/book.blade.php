@@ -4,14 +4,14 @@
 
 @section('content')
     <div style="margin-bottom: 40px;">
-        <h2 style="font-size: 32px; color: #2c3e50; margin: 0;">📅 Book Room #{{ $room->room_number }}</h2>
+        <h2 style="font-size: 32px; color: #2c3e50; margin: 0;">Book Room #{{ $room->room_number }}</h2>
     </div>
     
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
         <!-- 房间信息卡片 -->
         <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; height: fit-content;">
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; color: white;">
-                <h3 style="margin: 0; font-size: 24px;">🏠 Room Information</h3>
+                <h3 style="margin: 0; font-size: 24px;">Room Information</h3>
             </div>
             
             <div style="padding: 25px;">
@@ -39,14 +39,14 @@
                 
                 <div>
                     <p style="color: #7f8c8d; font-size: 13px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">Status</p>
-                    <span style="display: inline-block; background-color: #d4edda; color: #155724; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;">✓ Available</span>
+                    <span style="display: inline-block; background-color: #d4edda; color: #155724; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;">Available</span>
                 </div>
             </div>
         </div>
         
         <!-- 预订表单 -->
         <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 25px;">
-            <h3 style="color: #2c3e50; font-size: 20px; margin-bottom: 25px;">📝 Booking Details</h3>
+            <h3 style="color: #2c3e50; font-size: 20px; margin-bottom: 25px;">Booking Details</h3>
             
             <form action="{{ route('tenant.store-booking', $room->id) }}" method="POST">
                 @csrf
@@ -98,8 +98,8 @@
                     </div>
                 </div>
                 
-                <button type="submit" style="width: 100%; padding: 14px; background-color: #667eea; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 15px; transition: all 0.3s; margin-bottom: 12px;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">✓ Confirm Booking</button>
-                <a href="{{ route('tenant.rooms') }}" style="display: block; width: 100%; padding: 14px; text-align: center; background-color: #ecf0f1; color: #2c3e50; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 15px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.backgroundColor='#dde3e9';" onmouseout="this.style.backgroundColor='#ecf0f1';">❌ Cancel</a>
+                <button type="submit" style="width: 100%; padding: 14px; background-color: #667eea; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 15px; transition: all 0.3s; margin-bottom: 12px;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Confirm Booking</button>
+                <a href="{{ route('tenant.rooms') }}" style="display: block; width: 100%; padding: 14px; text-align: center; background-color: #ecf0f1; color: #2c3e50; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 15px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.backgroundColor='#dde3e9';" onmouseout="this.style.backgroundColor='#ecf0f1';">Cancel</a>
             </form>
         </div>
     </div>
