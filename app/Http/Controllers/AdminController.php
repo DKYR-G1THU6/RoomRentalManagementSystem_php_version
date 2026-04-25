@@ -36,7 +36,7 @@ class AdminController extends Controller
      * Admin views tenant list.
      */
     public function tenants()
-    {
+    { 
         $this->authorize('viewAny', User::class);
 
         $tenants = User::where('role', User::ROLE_TENANT)->with('bookings')->latest()->get();

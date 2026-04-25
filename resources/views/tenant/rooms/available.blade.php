@@ -18,7 +18,6 @@
                                 <h3 style="margin: 0; font-size: 22px;">Room #{{ $room->room_number }}</h3>
                                 <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">{{ $room->type }}</p>
                             </div>
-                            <div style="font-size: 28px;"></div>
                         </div>
                     </div>
                     

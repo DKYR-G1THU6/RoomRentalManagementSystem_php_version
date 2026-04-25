@@ -22,6 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//-----------------------------------------------------------------
 // redirect /dashboard according to user role
 Route::get('/dashboard', function () {
     $user = auth()->user();
@@ -31,6 +32,7 @@ Route::get('/dashboard', function () {
         return redirect()->route('tenant.rooms');
     }
 })->middleware(['auth', 'verified'])->name('dashboard');
+//------------------------------------------------------------------
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,9 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// 租客路由
+// tenant routes
 Route::middleware(['auth', 'verified', 'can:access-tenant'])->prefix('tenant')->name('tenant.')->group(function () {
-    // 任何访问仪表板的租客都被重定向到房间列表
+    // any tenant visits dashboard, redirect to room list
     Route::redirect('/dashboard', '/tenant/rooms');
     
     // room browsing
@@ -53,9 +55,9 @@ Route::middleware(['auth', 'verified', 'can:access-tenant'])->prefix('tenant')->
     Route::delete('/bookings/{booking}/cancel', [BookingController::class, 'cancelBooking'])->name('bookings.cancel');
 });
 
-// 管理员路由
+// admin routes
 Route::middleware(['auth', 'verified', 'can:access-admin'])->prefix('admin')->name('admin.')->group(function () {
-    // 管理员仪表板
+    // admin dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
     // room management
