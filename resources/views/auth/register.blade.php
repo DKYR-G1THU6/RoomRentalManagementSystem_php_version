@@ -13,7 +13,7 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #d8d8d8;
             color: #333;
             min-height: 100vh;
             display: flex;
@@ -33,7 +33,7 @@
         .navbar-brand {
             font-size: 24px;
             font-weight: bold;
-            color: #667eea;
+            color: #2e2d2dff;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -52,6 +52,7 @@
             cursor: pointer;
             font-size: 14px;
             text-decoration: none;
+            font-weight: bold;
             transition: all 0.3s;
             display: inline-block;
         }
@@ -68,7 +69,7 @@
         }
 
         .nav-btn-primary {
-            background-color: #667eea;
+            background-color: #002be9ff;
             color: white;
         }
 
@@ -162,7 +163,7 @@
         }
 
         .btn-primary {
-            background-color: #667eea;
+            background-color: #002fffff;
             color: white;
             margin-top: 10px;
         }

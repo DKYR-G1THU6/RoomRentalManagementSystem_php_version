@@ -1,0 +1,29 @@
+Admin:
+email: admin@utar.my
+password: root1234
+
+Tenant:
+email: tehkhoonyew411@1utar.my
+password: 12345678
+
+User registration
+1. we register new user account in this rental system (routes/auth.php & app\Http\Controllers\Auth\RegisteredUserController.php)
+2. The registration page requires standard details like name, email, and password and validation(  pasword matching & must 8 characters)
+3. By default, newly registered users are assigned the tenant role
+
+Dashboard 
+1. system have 2 roles ( tenant, admin) each of the roles have different authorization or features
+
+tenant scenario
+1 after successful login, system will directs the tenant to their dashboard. For tenant roles can access specific pages:
+- browse rooms to view available rooms and make new bookings
+- my booking is the history for booking to track the status of their booking status 
+- profile management is the user profile where can modify their personal details
+
+admin scenario
+1. show the system admin dashboard. The UI and features here are completely different from the tenant's view
+
+- admin can see system statistics like Total Rooms , Rented Rooms , and Pending bookings
+- from navigation, the admin can manage the entire core data, including room management ( adding /editing rooms)
+- Booking management is to approve or reject tenant request
+- Tenant management

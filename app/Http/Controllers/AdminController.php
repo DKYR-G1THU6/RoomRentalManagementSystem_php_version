@@ -36,8 +36,10 @@ class AdminController extends Controller
     /**
      * Admin views tenant list.
      */
+
     public function tenants(Request $request)
     {
+
         $this->authorize('viewAny', User::class);
 
         $search = trim((string) $request->query('q', ''));
