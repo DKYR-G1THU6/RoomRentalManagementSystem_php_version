@@ -132,7 +132,7 @@
             opacity: 0.8;
         }
 
-        /* 右侧 - 登录/注册或欢迎面板 */
+        
         .welcome-panel {
             flex: 1;
             background: white;
@@ -216,7 +216,7 @@
         }
 
         .divider:after {
-            content: "或";
+            content: "or";
             background: white;
             padding: 0 10px;
             color: #7f8c8d;
@@ -386,10 +386,10 @@
             </div>
         @endguest
 
-        <!-- 右侧 - 登录/注册或欢迎 -->
+        
         <div class="welcome-panel">
             @auth
-                <!-- 已登录用户 -->
+                
                 <div class="welcome-card">
                     <h2>Welcome back, {{ auth()->user()->name }}!</h2>
                     <div class="role-badge @if (auth()->user()->role === 'admin') admin @endif">
