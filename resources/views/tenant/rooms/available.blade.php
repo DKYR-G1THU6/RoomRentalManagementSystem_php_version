@@ -12,7 +12,7 @@
         <div class="room-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
             @foreach ($rooms as $room)
                 <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'; this.style.transform='translateY(-4px)';" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'; this.style.transform='translateY(0)';">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: white;">
+                    <div style="background: #533ca5ff; padding: 20px; color: white;">
                         <div style="display: flex; justify-content: space-between; align-items: start;">
                             <div>
                                 <h3 style="margin: 0; font-size: 22px;">Room #{{ $room->room_number }}</h3>
