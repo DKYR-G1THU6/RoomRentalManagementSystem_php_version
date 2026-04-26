@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\TenantController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +25,12 @@ Route::get('/', function () {
 // redirect /dashboard according to user role
 Route::get('/dashboard', function () {
     $user = auth()->user();
-    if ($user->role === 'admin') {
+    if ($user && $user->role === 'admin') {
         return redirect()->route('admin.dashboard');
-    } else {
+    } elseif ($user) {
         return redirect()->route('tenant.rooms');
     }
+    return redirect()->route('login');
 })->middleware(['auth', 'verified'])->name('dashboard');
 //------------------------------------------------------------------
 

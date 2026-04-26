@@ -4,41 +4,41 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
-// 创建示例房间
+// Create sample rooms
 \App\Models\Room::create([
     'room_number' => '101',
-    'type' => '标准单人间',
+    'type' => 'Standard Single Room',
     'price' => 288,
-    'description' => '宽敞舒适的单人房间，配备独立卫浴和无线网络',
+    'description' => 'Comfortable single room with private bathroom and WiFi',
     'status' => 'available',
 ]);
 
 \App\Models\Room::create([
     'room_number' => '102',
-    'type' => '标准双人间',
+    'type' => 'Standard Double Room',
     'price' => 388,
-    'description' => '温馨的双人房间，适合情侣或小家庭，配备现代化设施',
+    'description' => 'Cozy double room suitable for couples or small families, equipped with modern facilities',
     'status' => 'available',
 ]);
 
 \App\Models\Room::create([
     'room_number' => '103',
-    'type' => '豪华套房',
+    'type' => 'Deluxe Suite',
     'price' => 688,
-    'description' => '高端豪华套房，包含客厅、卧室和浴室，享受五星级服务',
+    'description' => 'Luxury suite including living room, bedroom, and bathroom, offering five-star service',
     'status' => 'available',
 ]);
 
 \App\Models\Room::create([
     'room_number' => '104',
-    'type' => '商务双床间',
+    'type' => 'Business Twin Room',
     'price' => 498,
-    'description' => '专为商务客人设计，配备办公区域和高速网络',
+    'description' => 'Specially designed for business travelers, equipped with a work area and high-speed internet',
     'status' => 'available',
 ]);
 
-echo "✅ 已成功创建 4 间示例房间!\n";
+echo "Successfully created 4 sample rooms!\n";
 $rooms = \App\Models\Room::all();
 foreach ($rooms as $room) {
-    echo "   房间 #" . $room->room_number . " (" . $room->type . ") - ¥" . $room->price . "/晚\n";
+    echo "   Room #" . $room->room_number . " (" . $room->type . ") - RM" . $room->price . "/night\n";
 }

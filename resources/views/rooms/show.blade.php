@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', '房间详情 - ' . $room->room_number)
+@section('title', 'Room Details - ' . $room->room_number)
 
 @section('content')
-    <div style="margin-bottom: 20px;">
-        <a href="{{ route('admin.rooms.index') }}" style="color: #3498db; text-decoration: none;">← Back to List</a>
+    <div class="rr-page-top">
+        <a href="{{ route('admin.rooms.index') }}" class="rr-link-back">← Back to List</a>
     </div>
     
-    <h2 style="font-size: 24px; color: #2c3e50; margin-bottom: 20px;">Room Details</h2>
+    <h2 class="rr-page-title rr-page-title--tight">Room Details</h2>
     
     <div class="info-box">
         <div class="info-row">
@@ -44,7 +44,7 @@
                 @if ($room->description)
                     {{ $room->description }}
                 @else
-                    <em style="color: #bdc3c7;">No description</em>
+                    <em class="rr-muted-note">No description</em>
                 @endif
             </div>
         </div>
@@ -63,7 +63,7 @@
     <div class="actions">
         <a href="{{ route('admin.rooms.edit', $room->id) }}" class="btn btn-warning">Edit Room</a>
         
-        <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" style="display: inline;">
+        <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" class="rr-form-inline rr-inline">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete Room</button>
@@ -71,16 +71,4 @@
         
         <a href="{{ route('admin.rooms.index') }}" class="btn btn-secondary">← Back to List</a>
     </div>
-@endsection
-
-@section('css')
-    <style>
-        .actions form {
-            display: inline;
-            padding: 0;
-            box-shadow: none;
-            background: transparent;
-            margin: 0;
-        }
-    </style>
 @endsection

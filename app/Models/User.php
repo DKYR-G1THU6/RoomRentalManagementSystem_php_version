@@ -24,8 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
-        'email_verified_at',// 这是因为我的RegisteredUserController.php 加了auto mark email_verified_at
+        'role', // always normal user when registering, admin can only be created by another admin
+        'email_verified_at',
     ];
 
     /**

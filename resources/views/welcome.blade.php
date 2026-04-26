@@ -4,336 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Rental Management System</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background:  #533ca5ff;
-            color: #333;
-            min-height: 100vh;
-            padding: 0;
-        }
-
-        /* 导航栏 */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 0 40px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .navbar-brand {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2e2d2dff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .navbar-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .nav-btn-primary {
-            background-color: #002be9ff;
-            color: white;
-        }
-
-        .nav-btn-primary:hover {
-            background-color: #5568d3;
-        }
-
-        .nav-btn-secondary {
-            border: 1px solid #667eea;
-            color: #667eea;
-            background-color: transparent;
-        }
-
-        .nav-btn-secondary:hover {
-            background-color: #667eea;
-            color: white;
-        }
-
-        /* 主容器 */
-        .main-container {
-            display: flex;
-            height: calc(100vh - 70px);
-        }
-
-        /* 左侧 - 特性介绍 */
-        .hero-section {
-            flex: 1;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
-        }
-
-        .hero-section h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .hero-section > p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .feature-item {
-            display: flex;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .feature-item-icon {
-            font-size: 28px;
-            min-width: 30px;
-        }
-
-        .feature-item-text h4 {
-            margin-bottom: 5px;
-            font-size: 15px;
-        }
-
-        .feature-item-text p {
-            font-size: 13px;
-            opacity: 0.8;
-        }
-
-        /* 右侧 - 登录/注册或欢迎面板 */
-        .welcome-panel {
-            flex: 1;
-            background: white;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-        }
-
-        .card {
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .card-header h2 {
-            color: #2c3e50;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .card-header p {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 15px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .btn-primary {
-            background-color: #002fffff;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: #ecf0f1;
-            color: #2c3e50;
-            border: 1px solid #bdc3c7;
-        }
-
-        .btn-secondary:hover {
-            background-color: #bdc3c7;
-            transform: translateY(-2px);
-        }
-
-        .divider {
-            height: 1px;
-            background: #ecf0f1;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .divider:after {
-            content: "或";
-            background: white;
-            padding: 0 10px;
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-
-        /* 用户已登录的欢迎面板 */
-        .welcome-card {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        .welcome-card h2 {
-            color: #2c3e50;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .welcome-card .role-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: #e8f4f8;
-            color: #667eea;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-
-        .welcome-card .role-badge.admin {
-            background: #fff3e0;
-            color: #f39c12;
-        }
-
-        .welcome-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .info-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #ecf0f1;
-            text-align: left;
-        }
-
-        .info-section h3 {
-            color: #2c3e50;
-            font-size: 16px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .info-list li {
-            color: #555;
-            font-size: 13px;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            list-style: none;
-        }
-
-        .info-list li:before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        @media (max-width: 1024px) {
-            .main-container {
-                flex-direction: column;
-                height: auto;
-            }
-            
-            .hero-section {
-                padding: 40px 30px;
-                height: auto;
-            }
-            
-            .welcome-panel {
-                padding: 40px 30px;
-                box-shadow: none;
-                border-top: 1px solid #ecf0f1;
-            }
-
-            .feature-list {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <!-- 导航栏 -->
+<body class="welcome-page">
+    <!-- navigation bar -->
     <div class="navbar">
         <div class="navbar-brand">
             Room Rental Management System
         </div>
         @auth
             <div class="navbar-actions">
-                <span style="color: #2c3e50; font-weight: 600;">{{ auth()->user()->name }}</span>
-                <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                <span class="welcome-user-name">{{ auth()->user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST" class="welcome-logout-form">
                     @csrf
                     <button type="submit" class="nav-btn nav-btn-primary">Log Out</button>
                 </form>
@@ -346,9 +28,9 @@
         @endauth
     </div>
 
-    <!-- 主容器 -->
+    <!-- main container -->
     <div class="main-container">
-        <!-- 左侧 - 特性介绍（仅未登录用户） -->
+        <!-- left side - introduce feature (only for not logged in users) -->
         @guest
             <div class="hero-section">
                 <h1>Easy to Manage Your Room Bookings</h1>
@@ -387,10 +69,10 @@
             </div>
         @endguest
 
-        <!-- 右侧 - 登录/注册或欢迎 -->
+        
         <div class="welcome-panel">
             @auth
-                <!-- 已登录用户 -->
+                
                 <div class="welcome-card">
                     <h2>Welcome back, {{ auth()->user()->name }}!</h2>
                     <div class="role-badge @if (auth()->user()->role === 'admin') admin @endif">
@@ -411,7 +93,7 @@
                         @endif
                     </div>
 
-                    <a href="{{ route('profile.edit') }}" style="color: #667eea; text-decoration: none; font-size: 14px;">Edit Profile</a>
+                    <a href="{{ route('profile.edit') }}" class="welcome-edit-link-inline">Edit Profile</a>
 
                     <div class="info-section">
                         <h3>
@@ -441,7 +123,7 @@
                     </div>
                 </div>
             @else
-                <!-- 未登录用户 -->
+                <!-- not logged in user -->
                 <div class="card">
                     <div class="card-header">
                         <h2>Start Experience</h2>

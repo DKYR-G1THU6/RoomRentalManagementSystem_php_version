@@ -3,18 +3,18 @@
 @section('title', 'Edit Room - ' . $room->room_number)
 
 @section('content')
-    <div style="margin-bottom: 20px;">
-        <a href="{{ route('admin.rooms.index') }}" style="color: #3498db; text-decoration: none;">← Back to List</a>
+    <div class="rr-page-top">
+        <a href="{{ route('admin.rooms.index') }}" class="rr-link-back">← Back to List</a>
     </div>
     
-    <h2 style="font-size: 24px; color: #2c3e50; margin-bottom: 30px;">Edit Room Information</h2>
+    <h2 class="rr-page-title rr-page-title--tight">Edit Room Information</h2>
     
     <form action="{{ route('admin.rooms.update', $room->id) }}" method="POST">
         @csrf
         @method('PUT')
         
         <div class="form-group">
-            <label for="room_number">Room Number <span style="color: #e74c3c;">*</span></label>
+            <label for="room_number">Room Number <span class="rr-required">*</span></label>
             <input 
                 type="text" 
                 id="room_number" 
@@ -23,12 +23,12 @@
                 required
             >
             @error('room_number')
-                <span style="color: #e74c3c; font-size: 13px;">{{ $message }}</span>
+                <span class="rr-field-error">{{ $message }}</span>
             @enderror
         </div>
         
         <div class="form-group">
-            <label for="type">Room Type <span style="color: #e74c3c;">*</span></label>
+            <label for="type">Room Type <span class="rr-required">*</span></label>
             <select id="type" name="type" required>
                 <option value="">-- Select Room Type --</option>
                 <option value="Single Room" {{ old('type', $room->type) === 'Single Room' ? 'selected' : '' }}>Single Room</option>
@@ -39,12 +39,12 @@
                 <option value="Suite" {{ old('type', $room->type) === 'Suite' ? 'selected' : '' }}>Suite</option>
             </select>
             @error('type')
-                <span style="color: #e74c3c; font-size: 13px;">{{ $message }}</span>
+                <span class="rr-field-error">{{ $message }}</span>
             @enderror
         </div>
         
         <div class="form-group">
-            <label for="price">Price (RM) <span style="color: #e74c3c;">*</span></label>
+            <label for="price">Price (RM) <span class="rr-required">*</span></label>
             <input 
                 type="number" 
                 id="price" 
@@ -55,19 +55,19 @@
                 required
             >
             @error('price')
-                <span style="color: #e74c3c; font-size: 13px;">{{ $message }}</span>
+                <span class="rr-field-error">{{ $message }}</span>
             @enderror
         </div>
         
         <div class="form-group">
-            <label for="status">Status <span style="color: #e74c3c;">*</span></label>
+            <label for="status">Status <span class="rr-required">*</span></label>
             <select id="status" name="status" required>
                 <option value="available" {{ old('status', $room->status) === 'available' ? 'selected' : '' }}>Available</option>
                 <option value="rented" {{ old('status', $room->status) === 'rented' ? 'selected' : '' }}>Rented</option>
                 <option value="maintenance" {{ old('status', $room->status) === 'maintenance' ? 'selected' : '' }}>Maintenance</option>
             </select>
             @error('status')
-                <span style="color: #e74c3c; font-size: 13px;">{{ $message }}</span>
+                <span class="rr-field-error">{{ $message }}</span>
             @enderror
         </div>
         
@@ -79,13 +79,13 @@
                 placeholder="Enter room description (optional)"
             >{{ old('description', $room->description) }}</textarea>
             @error('description')
-                <span style="color: #e74c3c; font-size: 13px;">{{ $message }}</span>
+                <span class="rr-field-error">{{ $message }}</span>
             @enderror
         </div>
         
-        <div style="margin-top: 30px; display: flex; gap: 10px;">
-            <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 15px; font-weight: 600;">Save Changes</button>
-            <a href="{{ route('admin.rooms.show', $room->id) }}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 15px; font-weight: 600; text-decoration: none;">Cancel</a>
+        <div class="rr-actions-row">
+            <button type="submit" class="btn btn-primary rr-btn-room-form">Save Changes</button>
+            <a href="{{ route('admin.rooms.show', $room->id) }}" class="btn btn-secondary rr-btn-room-form rr-link-no-underline">Cancel</a>
         </div>
     </form>
 @endsection

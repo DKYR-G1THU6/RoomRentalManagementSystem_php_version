@@ -5,9 +5,9 @@ $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
 $rooms = \App\Models\Room::all();
-echo "总房间数: " . count($rooms) . "\n";
-echo "可用房间数: " . \App\Models\Room::where('status', 'available')->count() . "\n\n";
+echo "Total rooms: " . count($rooms) . "\n";
+echo "Available rooms: " . \App\Models\Room::where('status', 'available')->count() . "\n\n";
 
 foreach ($rooms as $room) {
-    echo "房间 #" . $room->room_number . " - 类型: " . $room->type . " - 价格: ¥" . $room->price . " - 状态: " . $room->status . "\n";
+    echo "Room #" . $room->room_number . " - Type: " . $room->type . " - Price: RM" . $room->price . " - Status: " . $room->status . "\n";
 }

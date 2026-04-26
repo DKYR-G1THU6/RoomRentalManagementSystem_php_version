@@ -3,111 +3,103 @@
 @section('title', 'Edit Profile')
 
 @section('content')
-    <div style="margin-bottom: 40px;">
-        <h2 style="font-size: 32px; color: #2c3e50; margin: 0; margin-bottom: 10px;">Edit Profile</h2>
-        <p style="color: #7f8c8d; margin: 0;">Manage your account information</p>
+    <div class="rr-tenant-welcome">
+        <h2 class="profile-page-title">Edit Profile</h2>
+        <p class="profile-page-subtitle">Manage your account information</p>
     </div>
 
-    <!-- 显示模式 -->
-    <div id="displayMode" style="width: 600px;">
-        <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-            <div style="margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #ecf0f1;">
-                <label style="font-weight: 600; color: #7f8c8d; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">Username</label>
-                <p style="font-size: 18px; color: #2c3e50; margin: 10px 0 0 0; font-weight: 500;">{{ auth()->user()->name }}</p>
+    <!-- Display Mode -->
+    <div id="displayMode" class="profile-shell">
+        <div class="profile-card">
+            <div class="profile-card__section">
+                <label class="profile-card__label">Username</label>
+                <p class="profile-card__value">{{ auth()->user()->name }}</p>
             </div>
             
-            <div style="margin-bottom: 30px;">
-                <label style="font-weight: 600; color: #7f8c8d; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">Email</label>
-                <p style="font-size: 18px; color: #2c3e50; margin: 10px 0 0 0; font-weight: 500;">{{ auth()->user()->email }}</p>
+            <div class="profile-card__section profile-card__section--no-border">
+                <label class="profile-card__label">Email</label>
+                <p class="profile-card__value">{{ auth()->user()->email }}</p>
             </div>
             
-            <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Edit Information</button>
+            <button type="button" onclick="toggleEditMode()" class="profile-btn profile-btn--primary">Edit Information</button>
         </div>
     </div>
 
-    <!-- 编辑模式 -->
-    <div id="editMode" style="width: 600px; display: none;">
-        <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+    <!-- Edit Mode -->
+    <div id="editMode" class="profile-shell profile-shell--hidden">
+        <div class="profile-card">
             <form action="{{ route('profile.update') }}" method="POST">
                 @csrf
                 @method('PATCH')
                 
-                <div style="margin-bottom: 24px;">
-                    <label for="name" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Username <span style="color: #e74c3c;">*</span></label>
+                <div class="profile-edit-form__field">
+                    <label for="name" class="profile-edit-form__label">Username <span class="profile-edit-form__required">*</span></label>
                     <input 
                         type="text" 
                         id="name" 
                         name="name" 
                         value="{{ old('name', auth()->user()->name) }}"
                         required
-                        style="width: 100%; padding: 12px 15px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; transition: all 0.3s;"
-                        onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
-                        onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
+                        class="profile-edit-form__control"
                     >
                     @error('name')
-                        <span style="color: #e74c3c; font-size: 13px; display: block; margin-top: 5px;">{{ $message }}</span>
+                        <span class="profile-edit-form__error">{{ $message }}</span>
                     @enderror
                 </div>
                 
-                <div style="margin-bottom: 24px;">
-                    <label for="email" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Email <span style="color: #e74c3c;">*</span></label>
+                <div class="profile-edit-form__field">
+                    <label for="email" class="profile-edit-form__label">Email <span class="profile-edit-form__required">*</span></label>
                     <input 
                         type="email" 
                         id="email" 
                         name="email" 
                         value="{{ old('email', auth()->user()->email) }}"
                         required
-                        style="width: 100%; padding: 12px 15px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; transition: all 0.3s;"
-                        onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
-                        onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
+                        class="profile-edit-form__control"
                     >
                     @error('email')
-                        <span style="color: #e74c3c; font-size: 13px; display: block; margin-top: 5px;">{{ $message }}</span>
+                        <span class="profile-edit-form__error">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div style="margin-bottom: 30px;">
-                    <label for="password" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Password <span style="color: #e74c3c;">*</span></label>
-                    <div style="position: relative;">
+                <div class="profile-edit-form__field profile-edit-form__field--password">
+                    <label for="password" class="profile-edit-form__label">Password <span class="profile-edit-form__required">*</span></label>
+                    <div class="profile-edit-form__control-wrap">
                         <input 
                             type="password" 
                             id="password" 
                             name="password" 
                             placeholder="Enter new password"
-                            style="width: 100%; padding: 12px 15px; padding-right: 45px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; transition: all 0.3s;"
-                            onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
-                            onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
+                            class="profile-edit-form__control"
                         >
-                        <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #667eea; font-size: 18px; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                        <button type="button" onclick="togglePasswordVisibility()" class="profile-edit-form__eye">
                             <span id="passwordEyeIcon">Show</span>
                         </button>
                     </div>
                     @error('password')
-                        <span style="color: #e74c3c; font-size: 13px; display: block; margin-top: 5px;">{{ $message }}</span>
+                        <span class="profile-edit-form__error">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div style="margin-bottom: 30px;">
-                    <label for="password_confirmation" style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block; font-size: 14px;">Confirm Password <span style="color: #e74c3c;">*</span></label>
-                    <div style="position: relative;">
+                <div class="profile-edit-form__field profile-edit-form__field--password">
+                    <label for="password_confirmation" class="profile-edit-form__label">Confirm Password <span class="profile-edit-form__required">*</span></label>
+                    <div class="profile-edit-form__control-wrap">
                         <input 
                             type="password" 
                             id="password_confirmation" 
                             name="password_confirmation" 
                             placeholder="Confirm new password"
-                            style="width: 100%; padding: 12px 15px; padding-right: 45px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; transition: all 0.3s;"
-                            onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
-                            onblur="this.style.borderColor='#bdc3c7'; this.style.boxShadow='none';"
+                            class="profile-edit-form__control"
                         >
-                        <button type="button" onclick="togglePasswordConfirmationVisibility()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #667eea; font-size: 18px; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                        <button type="button" onclick="togglePasswordConfirmationVisibility()" class="profile-edit-form__eye">
                             <span id="passwordConfirmationEyeIcon">Show</span>
                         </button>
                     </div>
                 </div>
                 
-                <div style="display: flex; gap: 12px;">
-                    <button type="submit" style="padding: 12px 30px; background-color: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#5568d3';" onmouseout="this.style.backgroundColor='#667eea';">Save Changes</button>
-                    <button type="button" onclick="toggleEditMode()" style="padding: 12px 30px; background-color: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#7f8c8d';" onmouseout="this.style.backgroundColor='#95a5a6';">Cancel</button>
+                <div class="profile-edit-form__actions">
+                    <button type="submit" class="profile-edit-form__button profile-edit-form__button--save">Save Changes</button>
+                    <button type="button" onclick="toggleEditMode()" class="profile-edit-form__button profile-edit-form__button--cancel">Cancel</button>
                 </div>
             </form>
         </div>
