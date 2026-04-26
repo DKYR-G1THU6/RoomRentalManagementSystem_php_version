@@ -150,6 +150,12 @@ class RoomController extends Controller
         $room = Room::findOrFail($id);
         $this->authorize('delete', $room);
 
+        if ($room->bookings()->exists()) {
+            return redirect()
+                ->route('admin.rooms.index')
+                ->with('error', 'Cannot delete this room because it has booking records. Consider marking it as maintenance instead.');
+        }
+
         $room->delete();
 
         return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully!');

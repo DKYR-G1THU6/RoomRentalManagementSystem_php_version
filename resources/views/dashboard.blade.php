@@ -1,17 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+{{-- This view should never be directly rendered.
+     The /dashboard route in web.php handles role-based redirects.
+     If you somehow see this, it means the route redirect failed. --}}
+@php
+    if (auth()->check()) {
+        $role = auth()->user()->role;
+        if ($role === 'admin') {
+            header('Location: ' . route('admin.dashboard'));
+        } else {
+            header('Location: ' . route('tenant.rooms'));
+        }
+        exit();
+    } else {
+        header('Location: ' . route('login'));
+        exit();
+    }
+@endphp
