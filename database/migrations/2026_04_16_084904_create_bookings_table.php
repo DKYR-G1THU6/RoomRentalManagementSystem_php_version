@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
         $table->id();
         
-        // link users table (谁租的)
+        // link users table (Who rented)
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         
-        // link rooms table (租了哪间)
+        // link rooms table (Which room)
         $table->foreignId('room_id')->constrained()->onDelete('cascade');
         
-        $table->date('start_date'); // rental开始
-        $table->date('end_date');   // rental结束
+        $table->date('start_date'); // Rental start
+        $table->date('end_date');   // Rental end
         $table->decimal('total_price', 8, 2); // total price for the booking
         $table->enum('status', ['pending', 'active', 'completed', 'cancelled'])->default('pending'); // status of the booking
         

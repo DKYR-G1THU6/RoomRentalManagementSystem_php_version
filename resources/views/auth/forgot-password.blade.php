@@ -7,10 +7,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="auth-forgot-page">
-    <!-- 导航栏 -->
+    <!-- navigation bar -->
     <div class="navbar">
         <a href="{{ url('/') }}" class="navbar-brand">
-            🏨 Room Rental Management System
+            Room Rental Management System
         </a>
         <div class="navbar-actions">
             <a href="{{ url('/') }}" class="nav-btn nav-btn-secondary">Back to Home</a>
@@ -18,11 +18,11 @@
         </div>
     </div>
 
-    <!-- 忘记密码容器 -->
+    <!-- forget password container -->
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2>🔑 Forget Password</h2>
+                <h2> Forget Password</h2>
                 <p>No problem, tell us your email address, and we will send you a password reset link to set a new password.</p>
             </div>
 
@@ -59,7 +59,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">📧 Send Password Reset Link</button>
+                <button type="submit" class="btn btn-primary">Send Password Reset Link</button>
 
                 <div class="footer-actions">
                     <a href="{{ route('login') }}">Back to Login</a>

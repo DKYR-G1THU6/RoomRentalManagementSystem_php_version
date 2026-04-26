@@ -8,7 +8,7 @@
         <p class="profile-page-subtitle">Manage your account information</p>
     </div>
 
-    <!-- 显示模式 -->
+    <!-- Display Mode -->
     <div id="displayMode" class="profile-shell">
         <div class="profile-card">
             <div class="profile-card__section">
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <!-- 编辑模式 -->
+    <!-- Edit Mode -->
     <div id="editMode" class="profile-shell profile-shell--hidden">
         <div class="profile-card">
             <form action="{{ route('profile.update') }}" method="POST">

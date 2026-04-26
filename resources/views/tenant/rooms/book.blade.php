@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '预订房间 - ' . $room->room_number)
+@section('title', 'Book Room - ' . $room->room_number)
 
 @section('content')
     <div class="rr-tenant-welcome">
@@ -8,7 +8,7 @@
     </div>
     
     <div class="tenant-book-layout">
-        <!-- 房间信息卡片 -->
+        <!-- Room Information Card -->
         <div class="tenant-book-info rr-card">
             <div class="tenant-room-card-header rr-p-25">
                 <h3 class="tenant-book-header-title">Room Information</h3>
@@ -44,7 +44,7 @@
             </div>
         </div>
         
-        <!-- 预订表单 -->
+        <!-- Booking Form -->
         <div class="rr-card rr-p-25">
             <h3 class="tenant-book-form-title">Booking Details</h3>
             

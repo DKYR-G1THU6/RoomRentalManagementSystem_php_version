@@ -107,9 +107,11 @@ body {
 }
 
 .role-badge {
-	background: linear-gradient(135deg, var(--rr-primary) 0%, #764ba2 100%);
+	background: #8e5dbe;
 	color: white;
 	padding: 4px 12px;
+
+	margin: 12px;
 	border-radius: 20px;
 	font-size: 12px;
 	font-weight: 600;
@@ -164,6 +166,7 @@ body {
 		opacity: 0;
 		transform: translateY(-10px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -444,22 +447,65 @@ footer p {
 }
 
 /* Page helpers */
-.rr-mb-20 { margin-bottom: 20px; }
-.rr-mb-10 { margin-bottom: 10px; }
-.rr-mb-30 { margin-bottom: 30px; }
-.rr-mb-40 { margin-bottom: 40px; }
-.rr-mb-12 { margin-bottom: 12px; }
-.rr-mt-20 { margin-top: 20px; }
-.rr-mt-40 { margin-top: 40px; }
-.rr-m-0 { margin: 0; }
+.rr-mb-20 {
+	margin-bottom: 20px;
+}
 
-.rr-text-center { text-align: center; }
-.rr-text-muted { color: var(--rr-muted); }
-.rr-text-light { color: #bdc3c7; }
-.rr-text-16 { font-size: 16px; }
-.rr-text-14 { font-size: 14px; }
-.rr-p-60-30 { padding: 60px 30px; }
-.rr-p-25 { padding: 25px; }
+.rr-mb-10 {
+	margin-bottom: 10px;
+}
+
+.rr-mb-30 {
+	margin-bottom: 30px;
+}
+
+.rr-mb-40 {
+	margin-bottom: 40px;
+}
+
+.rr-mb-12 {
+	margin-bottom: 12px;
+}
+
+.rr-mt-20 {
+	margin-top: 20px;
+}
+
+.rr-mt-40 {
+	margin-top: 40px;
+}
+
+.rr-m-0 {
+	margin: 0;
+}
+
+.rr-text-center {
+	text-align: center;
+}
+
+.rr-text-muted {
+	color: var(--rr-muted);
+}
+
+.rr-text-light {
+	color: #bdc3c7;
+}
+
+.rr-text-16 {
+	font-size: 16px;
+}
+
+.rr-text-14 {
+	font-size: 14px;
+}
+
+.rr-p-60-30 {
+	padding: 60px 30px;
+}
+
+.rr-p-25 {
+	padding: 25px;
+}
 
 .rr-back-link {
 	color: #3498db;
@@ -496,23 +542,59 @@ footer p {
 	margin-top: 5px;
 }
 
-.rr-kpi-card--total-rooms { background: #e3f2fd; border-left-color: #2196f3; }
-.rr-kpi-card--total-rooms .rr-kpi-value { color: #2196f3; }
+.rr-kpi-card--total-rooms {
+	background: #e3f2fd;
+	border-left-color: #2196f3;
+}
 
-.rr-kpi-card--available-rooms { background: #e8f5e9; border-left-color: #4caf50; }
-.rr-kpi-card--available-rooms .rr-kpi-value { color: #4caf50; }
+.rr-kpi-card--total-rooms .rr-kpi-value {
+	color: #2196f3;
+}
 
-.rr-kpi-card--rented-rooms { background: #fff3e0; border-left-color: #ff9800; }
-.rr-kpi-card--rented-rooms .rr-kpi-value { color: #ff9800; }
+.rr-kpi-card--available-rooms {
+	background: #e8f5e9;
+	border-left-color: #4caf50;
+}
 
-.rr-kpi-card--maintenance-rooms { background: #fce4ec; border-left-color: #e91e63; }
-.rr-kpi-card--maintenance-rooms .rr-kpi-value { color: #e91e63; }
+.rr-kpi-card--available-rooms .rr-kpi-value {
+	color: #4caf50;
+}
 
-.rr-kpi-card--tenants { background: #f3e5f5; border-left-color: #9c27b0; }
-.rr-kpi-card--tenants .rr-kpi-value { color: #9c27b0; }
+.rr-kpi-card--rented-rooms {
+	background: #fff3e0;
+	border-left-color: #ff9800;
+}
 
-.rr-kpi-card--pending-bookings { background: #e0f2f1; border-left-color: #009688; }
-.rr-kpi-card--pending-bookings .rr-kpi-value { color: #009688; }
+.rr-kpi-card--rented-rooms .rr-kpi-value {
+	color: #ff9800;
+}
+
+.rr-kpi-card--maintenance-rooms {
+	background: #fce4ec;
+	border-left-color: #e91e63;
+}
+
+.rr-kpi-card--maintenance-rooms .rr-kpi-value {
+	color: #e91e63;
+}
+
+.rr-kpi-card--tenants {
+	background: #f3e5f5;
+	border-left-color: #9c27b0;
+}
+
+.rr-kpi-card--tenants .rr-kpi-value {
+	color: #9c27b0;
+}
+
+.rr-kpi-card--pending-bookings {
+	background: #e0f2f1;
+	border-left-color: #009688;
+}
+
+.rr-kpi-card--pending-bookings .rr-kpi-value {
+	color: #009688;
+}
 
 .rr-admin-panels {
 	display: grid;
@@ -1071,12 +1153,18 @@ body.app-page .booking-empty__text {
 }
 
 /* Filter form */
-.rr-filter-form { margin-bottom: 20px; }
+.rr-filter-form {
+	margin-bottom: 20px;
+}
 
 .rr-filter-grid {
 	display: grid;
 	gap: 10px;
 	align-items: end;
+}
+
+.rr-filter-grid>div {
+	min-width: 0;
 }
 
 .rr-filter-grid-bookings {
@@ -1088,7 +1176,7 @@ body.app-page .booking-empty__text {
 }
 
 .rr-filter-grid-rooms {
-	grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 2.5fr;
 }
 
 .rr-filter-label {
@@ -1130,17 +1218,41 @@ body.app-page .booking-empty__text {
 	font-size: 12px;
 }
 
-.rr-stat-card--pending { background: #fff3cd; border-left-color: #f39c12; }
-.rr-stat-card--pending .rr-stat-value { color: #f39c12; }
+.rr-stat-card--pending {
+	background: #fff3cd;
+	border-left-color: #f39c12;
+}
 
-.rr-stat-card--active { background: #d4edda; border-left-color: #28a745; }
-.rr-stat-card--active .rr-stat-value { color: #28a745; }
+.rr-stat-card--pending .rr-stat-value {
+	color: #f39c12;
+}
 
-.rr-stat-card--completed { background: #d1ecf1; border-left-color: #017a8c; }
-.rr-stat-card--completed .rr-stat-value { color: #017a8c; }
+.rr-stat-card--active {
+	background: #d4edda;
+	border-left-color: #28a745;
+}
 
-.rr-stat-card--cancelled { background: #f8d7da; border-left-color: #e74c3c; }
-.rr-stat-card--cancelled .rr-stat-value { color: #e74c3c; }
+.rr-stat-card--active .rr-stat-value {
+	color: #28a745;
+}
+
+.rr-stat-card--completed {
+	background: #d1ecf1;
+	border-left-color: #017a8c;
+}
+
+.rr-stat-card--completed .rr-stat-value {
+	color: #017a8c;
+}
+
+.rr-stat-card--cancelled {
+	background: #f8d7da;
+	border-left-color: #e74c3c;
+}
+
+.rr-stat-card--cancelled .rr-stat-value {
+	color: #e74c3c;
+}
 
 .rr-actions {
 	display: flex;
@@ -1164,8 +1276,13 @@ body.app-page .booking-empty__text {
 	box-shadow: var(--rr-card-shadow);
 }
 
-.rr-card-p-18 { padding: 18px; }
-.rr-card-p-25 { padding: 25px; }
+.rr-card-p-18 {
+	padding: 18px;
+}
+
+.rr-card-p-25 {
+	padding: 25px;
+}
 
 /* Tenant: Browse Rooms */
 .tenant-room-layout {
@@ -1217,7 +1334,9 @@ body.app-page .booking-empty__text {
 	font-size: 12px;
 }
 
-.tenant-room-field { margin-bottom: 12px; }
+.tenant-room-field {
+	margin-bottom: 12px;
+}
 
 .tenant-room-price-grid {
 	display: grid;
@@ -1240,7 +1359,7 @@ body.app-page .booking-empty__text {
 }
 
 .tenant-room-card-header {
-	background: linear-gradient(135deg, var(--rr-primary) 0%, #764ba2 100%);
+	background: #9364c2;
 	padding: 20px;
 	color: white;
 }
@@ -1262,8 +1381,13 @@ body.app-page .booking-empty__text {
 	font-size: 14px;
 }
 
-.tenant-room-card-body { padding: 25px; }
-.tenant-room-block { margin-bottom: 20px; }
+.tenant-room-card-body {
+	padding: 25px;
+}
+
+.tenant-room-block {
+	margin-bottom: 20px;
+}
 
 .tenant-room-meta-label {
 	color: var(--rr-muted);
@@ -1470,7 +1594,7 @@ body.app-page .booking-empty__text {
 
 /* Auth pages */
 body.auth-page {
-	background: #d8d8d8;
+	background: #f0ecec;
 	color: #333;
 }
 
@@ -1551,7 +1675,7 @@ body.app-page .user-name {
 }
 
 body.app-page .role-badge {
-	background-color: #533ca5ff;
+	background-color: #8e5dbe;
 	color: white;
 	padding: 4px 12px;
 	border-radius: 20px;
@@ -1594,8 +1718,15 @@ body.app-page .alert {
 }
 
 @keyframes slideDown {
-	from { opacity: 0; transform: translateY(-10px); }
-	to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 body.app-page .alert-success {
@@ -1958,7 +2089,6 @@ body.app-page .rr-stat-card--teal .rr-stat-card__value {
 
 body.app-page .rr-filter-grid {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto;
 	gap: 10px;
 	align-items: end;
 }
@@ -2317,12 +2447,12 @@ body.app-page .rr-card-link {
 }
 
 body.auth-forgot-page {
-	background: #961cd4;
+	background: #f0ecec;
 	color: #333;
 }
 
 body.welcome-page {
-	background: #533ca5ff;
+	background: #878787;
 	color: #333;
 	padding: 0;
 }
@@ -2343,8 +2473,13 @@ body.welcome-page {
 	width: 100%;
 }
 
-.auth-card--sm { max-width: 450px; }
-.auth-card--md { max-width: 500px; }
+.auth-card--sm {
+	max-width: 450px;
+}
+
+.auth-card--md {
+	max-width: 500px;
+}
 
 .auth-card-header {
 	text-align: center;
@@ -2868,7 +3003,7 @@ body.welcome-page {
 	margin-bottom: 20px;
 }
 
-.hero-section > p {
+.hero-section>p {
 	font-size: 18px;
 	margin-bottom: 40px;
 	opacity: 0.9;
@@ -3342,7 +3477,9 @@ body.auth-register-page .info-text {
 }
 
 /* Alpine helpers */
-[x-cloak] { display: none !important; }
+[x-cloak] {
+	display: none !important;
+}
 
 /* Replacements for former inline styles (keep UI unchanged) */
 .rr-page-top-row {
@@ -3356,7 +3493,9 @@ body.auth-register-page .info-text {
 	gap: 10px;
 }
 
-.rr-flex-1 { flex: 1; }
+.rr-flex-1 {
+	flex: 1;
+}
 
 .rr-inline {
 	display: inline;
@@ -3559,7 +3698,7 @@ body.welcome-page .hero-section h1 {
 	margin-bottom: 20px;
 }
 
-body.welcome-page .hero-section > p {
+body.welcome-page .hero-section>p {
 	font-size: 18px;
 	margin-bottom: 40px;
 	opacity: 0.9;

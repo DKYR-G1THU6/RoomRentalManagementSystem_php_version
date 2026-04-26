@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="auth-page">
-    <!-- 导航栏 -->
+    <!-- Navigation Bar -->
     <div class="navbar">
         <a href="{{ url('/') }}" class="navbar-brand">
             Room Rental Management System
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <!-- 登录容器 -->
+    <!-- Login Container -->
     <div class="container">
         <div class="card">
             <div class="card-header">

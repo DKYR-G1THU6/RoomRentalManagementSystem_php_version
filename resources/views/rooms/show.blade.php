@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '房间详情 - ' . $room->room_number)
+@section('title', 'Room Details - ' . $room->room_number)
 
 @section('content')
     <div class="rr-page-top">

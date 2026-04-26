@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="welcome-page">
-    <!-- 导航栏 -->
+    <!-- navigation bar -->
     <div class="navbar">
         <div class="navbar-brand">
             Room Rental Management System
@@ -28,9 +28,9 @@
         @endauth
     </div>
 
-    <!-- 主容器 -->
+    <!-- main container -->
     <div class="main-container">
-        <!-- 左侧 - 特性介绍（仅未登录用户） -->
+        <!-- left side - introduce feature (only for not logged in users) -->
         @guest
             <div class="hero-section">
                 <h1>Easy to Manage Your Room Bookings</h1>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
             @else
-                <!-- 未登录用户 -->
+                <!-- not logged in user -->
                 <div class="card">
                     <div class="card-header">
                         <h2>Start Experience</h2>
